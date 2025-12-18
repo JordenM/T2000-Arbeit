@@ -1,5 +1,5 @@
-# Erarbeitung eines technischen Konzepts zur Anbindung der Auslandsstudios eines Medienunternehmens mittels SD-WAN
-Bachelorarbeit von Felix Bilz
+# Entwicklung automatisierter Metriken und Methoden zur Verbesserung von Texten in Leichter Sprache
+T2000 Arbeit Jorden Malecha
 
 ## Compilieren
 Für das Paket _latexmk_ und die Erzeugung eines Glossars muss ein Perl-Interpreter installiert sein. Linux- und Mac-User haben normalerweise diesen schon im System installiert. Windows-Nutzern ist ActivePerl zu empfehlen. Die Vorlage nutzt außerdem _biblatex_ mit dem Backend _biber_ für die Bibliographie.
