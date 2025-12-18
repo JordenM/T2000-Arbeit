@@ -1,0 +1,5 @@
+services:
+  tex:
+    build: .
+    volumes:
+      - ./src:/app/src

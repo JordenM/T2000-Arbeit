@@ -1,0 +1,38 @@
+% !TeX spellcheck = de_DE
+
+Die Anbindung geografisch weit entfernter Standorte eines Unternehmens stellt eine zentrale Aufgabe für die Netzwerktechnik dar. Aufgrund der weiten Entfernung spricht man hier von einem \acl{wan}. Zur Anbindung gibt es verschiedene Technologien, die im Folgenden kurz erklärt werden. Der Schwerpunkt liegt dabei auf Leased Lines und \ac{vpn}-Lösungen.
+
+\subsection*{Leased Lines}
+Eine Leased Line, im Deutschen auch Standleitung oder gemietete Leitung genannt, stellt eine dedizierte Punkt-zu-Punkt-Verbindung auf Layer-2 dar. Sie wird in der Regel von Telekommunikationsanbietern exklusiv an einen Kunden vermietet, wodurch nahezu konstante Übertragungsraten gewährleistet werden~\cite{WhatAreLeased}. \\
+Technisch kann eine Leased Line auf verschiedenen Übertragungsarten umgesetzt werden. Heutzutage kommt jedoch meist Glasfaser zum Einsatz. Durch die Exklusivität können symmetrische Geschwindigkeiten angeboten werden. Diese sind von wenigen Mbit/s bis hin zu mehreren hundert Gbit/s möglich. Übliche Bandbreiten im Unternehmensumfeld reichen beispielsweise von 100 Mbit/s bis 100 Gbit/s. Die symmetrischen Datenraten sind besonders vorteilhaft für datenintensive Anwendungen, da Upload- und Downloadraten identisch und zuverlässig zur Verfügung stehen~\cite[7]{BuildingInfrastructureCapacity1999}. Ein zentraler Vorteil ist die hohe Verfügbarkeit, die meist durch detaillierte \acp{sla} abgesichert und vertraglich vereinbart ist. In den \acp{sla} werden die garantierten Bandbreiten, Latenzwerte sowie maximale Ausfall- und Reaktionszeiten spezifiziert. Typische Verfügbarkeitsgarantien liegen bei mindestens 99,9 \% Verfügbarkeit. Bei Störungen wird eine Reaktions- und Endstörzeit von wenigen Stunden zugesichert~\cite{wickStandleitungUndSDSL2016}.\\
+Der exklusive Zugang bietet außerdem eine Übertragung ohne Beeinträchtigung durch Drittnutzer oder Netzüberlastung. Dadurch eignen sie sich ideal für latenzempfindliche Dienste und Echtzeitanwendungen, wie sie im Medienunternehmen häufig vorkommen.\\
+Von Relevanz ist auch der Support: Nicht nur die schnellen Reaktionszeiten, sondern auch die Überwachung sind für einen störungsfreien Betrieb notwendig. Standardmäßig überwachen die Anbieter die Leitungen kontinuierlich und reagieren automatisch auf auftretende Störungen. Ein klarer Vorteil gegenüber normalem Breitband ohne dedizierte \acp{sla}~\cite[155]{parkNetworkDesignUsing2002}.\\
+ Auf der Gegenseite stehen die hohen Kosten. Die Investition umfasst nicht nur die monatlichen Mietgebühren, sondern auch die aufwändige Installation. Da bei einer Leased Line eine neue Leitung gelegt werden muss, können hier sogar Tiefbauarbeiten und langfristige Vertragsbindungen die Folge sein. Auch ist die Bereitstellung durch den hohen Aufwand zeitintensiv und kann bei schlechten Gegebenheiten mehrere Wochen oder gar Monate dauern~\cite[155f]{parkNetworkDesignUsing2002}.
+Abschließend lässt sich festhalten: Eine Leased Line ist ideal für Unternehmen mit hohem Datenvolumen, strengen Verfügbarkeitsanforderungen oder hohen Sicherheitsanforderungen. Diese Punkte werden von typischen Medienunternehmen alle als erforderlich gekennzeichnet, weshalb diese Technologie trotz der hohen Kosten im großen Stil zum Einsatz kommt.
+
+\subsection*{VPN}\label{subsec:vpn}
+Im Gegensatz zu dedizierten Leitungen, wie einer Leased Line, nutzt ein \ac{vpn} öffentliche und geteilte Netzwerke. In der Praxis verlaufen \ac{vpn}-Verbindungen meist über das Internet. \ac{vpn} ermöglicht, über ein unsicheres öffentliches Netzwerk eine sichere, virtuelle Netzwerkverbindung herzustellen~\cite{WieFunktioniertVirtual}. Dabei werden die Daten zwischen zwei \ac{vpn} fähigen Geräten von Punkt zu Punkt verschlüsselt übertragen, sodass sie vor unbefugtem Zugriff geschützt sind. Die Verschlüsselung erfolgt meist automatisch beim Verbindungsaufbau und sorgt dafür, dass sensible Informationen auch über unsichere Netzwerke sicher transportiert werden können~\cite{WieFunktioniertVirtual}. Technisch wird bei einer \ac{vpn}-Verbindung ein sogenannter \ac{vpn}-Tunnel aufgebaut, durch den die gesamten Daten übertragen werden. Am Tunneleingang, also beim Endgerät, werden die Daten in verschlüsselte Pakete gepackt und am Tunnelende vom \ac{vpn}-Server wieder entschlüsselt. \\
+Die Verschlüsselung bei \ac{vpn}-Verbindungen unterscheidet sich dahingehend von der bei zum Beispiel \ac{https} eingesetzten Verfahren, dass bei \ac{vpn} der gesamte Datenverkehr verschlüsselt wird~\cite{WieFunktioniertVirtual}. Diese \ac{wan}-Anbindung kommt bei Unternehmen zum Einsatz, um zum Beispiel Mitarbeiter im Home-Office an das Unternehmensnetzwerk anzubinden.
+
+\subsection*{Vorteile von getunnelten Verbindungen}
+Ein Vorteil von \ac{vpn}-Verbindungen und Leased-Lines ist die Verschleierung des Standortes. Da das Endgerät die Pakete getunnelt über ein Server am entfernten Standort ins Internet überträgt, ist nicht die externe \ac{ip}-Adresse des Endgeräts, sondern die des Servers sichtbar. Dies ermöglicht es zum Beispiel Webseitenbetreibern nicht, Rückschlüsse auf den Standort des Endgeräts zu ziehen. Aus diesem Grund werden \ac{vpn}-Verbindungen und Leased Lines nicht nur aufgrund der Verschlüsselung eingesetzt, sondern auch zur Umgehung von Geoblocking oder der Wahrung der Identität. Bei \acp{vpn} ist dieser Anwendungsfall jedoch häufiger zu finden als bei Leased-Lines. \\
+
+\subsection*{Vergleich traditioneller WANs}
+\begin{table}[H]
+\centering
+\begin{tabular*}{\textwidth}{lll}
+	\hline
+	 & \textbf{Leased Line} & \textbf{VPN über Internet} \\
+	\hline
+	Bandbreite & Garantiert & Variabel \\
+	Verfügbarkeit & Hoch & Schwankend \\
+	Sicherheit & physisch getrennt & Verschlüsselung notwendig \\
+	Flexibilität & Eingeschränkt & Dynamisch, standortunabhängig \\
+	Kosten & Hoch & Gering bis moderat\\
+	Projektdauer & Lange Bereitstellungszeit & Schnell implementierbar \\
+	\hline
+\end{tabular*}
+\caption{Vergleich von Leased Line und VPN}
+\end{table}
+
+Für Anwendungen mit hohen Anforderungen an die Performance, die Verfügbarkeit oder Latenz ist eine Leased Line die klare Wahl. Wenn diese Kriterien jedoch nicht zutreffen oder eine hohe Flexibilität erforderlich ist, kann eine Leased Line keine Vorteile gegenüber \ac{vpn} ausspielen. Für den Remote-Zugriff einzelner Computer ist eine \ac{vpn}-Verbindung ideal.

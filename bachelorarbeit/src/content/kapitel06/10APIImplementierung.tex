@@ -1,0 +1,81 @@
+% !TeX spellcheck = de_DE
+
+\subsection*{Ziel des Testaufbaus}
+Ein systematischer Testaufbau ist essentiell, um die entwickelte \ac{sd-wan}-Architektur vor der produktiven Implementierung zu validieren und potenzielle Schwachstellen zu identifizieren. Obwohl im Rahmen dieser Arbeit keine vollständige Laborumgebung realisiert werden konnte, ist es wichtig, die grundlegenden Testziele und -methoden zu definieren, um eine spätere praktische Validierung zu ermöglichen. 
+
+Die primären Ziele umfassen die Überprüfung der grundsätzlichen Funktionalität der Layer-3-Anbindungen über \ac{sd-wan}, insbesondere die dynamische Pfadwahl und der Local Internet Breakout. Ein zentraler Aspekt ist die Validierung der Routing- und Redundanzmechanismen, wobei bei Ausfall einer Verbindung die automatische Umschaltung auf alternative Pfade ohne nennenswerte Unterbrechung erfolgen muss. Schließlich fokussiert sich der dritte Bereich auf den Test der zentralen Verwaltung und Sicherheitsrichtlinien.
+
+Grundsätzlich gilt es zu überprüfen, ob das Konzept die in Kapitel \ref{sec:anforderungen} beschriebenen Anforderungen erfüllt und die Grundlage für eine schrittweise Migration der realen Auslandsstudios schafft.
+
+\subsection*{Komponenten}
+Die Realisierung eines aussagekräftigen Testaufbaus erfordert eine sorgfältige Auswahl verschiedener Hardware- und Software-Komponenten.
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth}{lX}
+		Komponente & Funktion/Zweck \\
+		\hline
+		\ac{sd-wan}-Controller & Zentrale Verwaltung, Policy- und Richtlinien-Steuerung \\
+		mindestens 2 Edge-Geräte & Simulation der Standorte \\
+		Layer-3-Switching & Simuliert Netzanbindung der Standorte \\
+		Test-Client und -Server & Generieren Traffic und für Monitoring \\
+		Monitoring-Tools & Netzwerkmonitoring, Logging, Auswertung der Verbindung \\ 
+	\end{tabularx}
+	\caption{Benötigte Komponenten für Testaufbau}
+\end{table}
+
+Als zentrale Steuerungseinheit fungiert der \ac{sd-wan}-Controller durch Palo Alto Networks Controller, der die Konfiguration und Überwachung aller Edge-Geräte übernimmt. Er muss verschiedene Policy-Sets verwalten und in Echtzeit den Status aller angeschlossenen Geräte überwachen.
+
+\subsubsection*{Edge-Hardware und Netzwerk-Infrastruktur}
+
+Mindestens zwei Edge-Geräte (idealerweise PA-Firewall) sind erforderlich, um realistische Standort-zu-Standort-Verbindungen zu simulieren. Diese repräsentieren die Auslandsstudios und den Hauptstandort Stuttgart. Um realistische WAN-Bedingungen zu simulieren, sind Layer-3-Switches oder Router erforderlich, die verschiedene Latenz-, Jitter- und Bandbreitenbedingungen nachbilden können.
+
+\subsubsection*{Test- und Monitoring-Systeme}
+
+Zur Generierung realistischen Netzwerkverkehrs sind Test-Clients und Server-Sys\-teme erforderlich, die verschiedene Anwendungstypen der Medienproduktion simulieren. Monitoring-Tools wie Wireshark, iperf und spezialisierte \ac{sd-wan}-Monitoring-Lösungen sind für die Performance-Bewertung essentiell.
+
+\subsection*{Netzwerkstruktur/-aufbau}
+Die Struktur des Testaufbaus orientiert sich an der realen Topologie der SWR Auslandsstudios und implementiert eine hybride Architektur mit bestehenden Leased-Line-Verbindungen und neuen Internet-basierten \ac{sd-wan}-Pfaden.
+
+Der Testaufbau basiert auf einer Hub-and-Spoke-Topologie mit dem zentralen Controller als Management-Hub und mindestens drei Edge-Standorten. Zwischen den Edge-Geräten wird eine Vollvermaschung der \ac{sd-wan}-Tunnel konfiguriert.
+
+\subsubsection*{Simulation internationaler Verbindungen}
+
+Zur Simulation internationaler Internetverbindungen werden Layer-3-Router mit verschiedenen Netzwerkbedingungen geschaltet. Für Auslandsstudio-Verbindungen wird eine Latenz von 120-140ms bei 100 Mbps Bandbreite konfiguriert.
+
+Das Testnetzwerk wird in logische Segmente unterteilt:
+\begin{itemize}
+	\item Produktionssegment (VLAN 100) für kritischen Medienverkehr
+	\item Bürosegment (VLAN 200) für Standard-Office-Anwendungen
+	\item Management-Segment (VLAN 300) für administrative Verwaltung
+\end{itemize}
+
+\subsubsection*{Adressierung und Redundanz-Konzept}
+
+Jeder Teststandort erhält ein privates IP-Subnetz nach dem Schema 10.x.0.0/16. Die \ac{sd-wan}-Overlay-Tunnel verwenden separate Adressbereiche im 192.168.x.0/24 Bereich.
+
+Für Ausfallsicherheitstests wird jeder Standort mit mindestens zwei simulierten WAN-Verbindungen ausgestattet. Load-Generator-Tools wie iperf3 simulieren verschiedene Verkehrsmuster zwischen den Standorten.
+
+\subsection*{Testmethodik}
+Die Tests folgen einem strukturierten Ansatz mit quantitativen Messungen und qualitativen Bewertungen. Zu Beginn erfolgen Baseline-Messungen ohne \ac{sd-wan}-Overlay zur Vergleichsbasis. Grundlegende Parameter wie Round-Trip-Time, Bandbreite und Paketverlustrate werden zwischen allen Teststandorten erfasst.
+
+\subsubsection*{Schrittweise Implementierung und Lastszenarien}
+
+Die \ac{sd-wan}-Funktionen werden schrittweise aktiviert, von einfacher Tunnel-Eta\-blierung bis zu komplexen Policy-basierten Routing-Entscheidungen. Verschiedene Verkehrsmuster werden simuliert, von kontinuierlichem Background-Traffic bis zu Lastspitzen bei Live-Übertragungen.
+
+\subsubsection*{Robustheitstests}
+
+Die Ausfallsicherheit wird durch gezielte Unterbrechung von Netzwerkkomponenten getestet, sowohl "sanfte" Ausfälle durch administrative Deaktivierung als auch "harte" Ausfälle durch physische Trennung. Die Wirksamkeit verschiedener \ac{qos}- und Routing-Policies wird durch gleichzeitiges Starten verschiedener Anwendungstypen überprüft.
+
+\subsection*{Auswertung}
+Die Bewertung der Testergebnisse erfolgt anhand definierter Kriterien aus den ursprünglich formulierten Anforderungen. Zentrale Bewertungskriterien sind Latenz, Jitter, Durchsatz und Paketverlustrate in Relation zu den Baseline-Messungen.
+
+Die Ausfallsicherheit wird anhand der Mean Time To Recovery (MTTR) bewertet. Akzeptable Ausfallzeiten liegen im Bereich von wenigen Sekunden für unkritische Anwendungen und unter einer Sekunde für Live-Übertragungen.
+
+\subsubsection*{Praktische Bewertungsaspekte}
+
+Ein wesentlicher Aspekt liegt in der praktischen Handhabbarkeit der zentralen Verwaltung und der Qualität der Monitoring-Funktionen. Grundlegende Überlegungen zu Implementierungs- und Betriebskosten fließen ebenfalls in die Bewertung ein.
+
+\subsubsection*{Empfehlungen für die Praxis}
+
+Basierend auf den Testergebnissen werden konkrete Empfehlungen für eine schrittweise Einführung der \ac{sd-wan}-Lösung bei der SWR formuliert. Besonderes Augenmerk gilt der Identifikation von Pilotstandorten für eine erste Implementierung.

@@ -1,0 +1,29 @@
+% !TeX spellcheck = de_DE
+
+Die Sicherheit der \ac{sd-wan}-Lösung stellt einen kritischen Erfolgsfaktor für die Anbindung der Auslandsstudios dar. Aufgrund der Verwendung von Layer-3-Verbindungen über das öffentliche Internet (siehe Kapitel \ref{sec:ausgangslage}) sowie der geografischen Verteilung der Standorte müssen umfassende Sicherheitsmechanismen implementiert werden, die die in Kapitel \ref{sec:netzSicherheit} definierten Schutzziele gewährleisten.
+
+\subsection*{Sicherheitsarchitektur}
+Das Sicherheitskonzept basiert auf einem mehrschichtigen Ansatz, der verschiedene Sicherheitsebenen miteinander kombiniert. Die zentrale Komponente bilden die Palo Alto Networks Firewalls, die sowohl \ac{sd-wan}-Funktionalität als auch integrierte Sicherheitsdienste bereitstellen. Dies entspricht der in Kapitel \ref{sec:sd-wan-grundlagen} beschriebenen Verschmelzung von Netzwerk- und Sicherheitsfunktionen in modernen Next-Generation-Firewalls.
+
+\subsection*{Verschlüsselung und \ac{vpn}-Tunnel}
+Alle Datenverbindungen zwischen den Auslandsstudios und dem Hauptstandort Stuttgart werden durch verschlüsselte \ac{vpn}-Tunnel gesichert, wie bereits in Kapitel \ref{sec:techArch} konzipiert. Die Implementierung erfolgt über \ac{ipsec}-Protokolle mit \ac{aes}-256-Verschlüsselung, die einen hohen Schutz gegen Angriffe und Datenmanipulation bietet. Die dynamische Schlüsselerneuerung erfolgt in regelmäßigen Intervallen, um die Sicherheit auch bei langfristigen Verbindungen zu gewährleisten.\\
+Die \ac{vpn}-Tunnel werden automatisch durch die \ac{sd-wan}-Lösung verwaltet und bei Leitungsausfällen auf andere Verbindungen umgeschaltet, ohne dass die Verschlüsselung beeinträchtigt wird. Dies unterstützt die in ANF-01 und ANF-06 geforderte zuverlässige und sichere Anbindung. 
+
+\subsection*{Sicherheit des Local Internet Breakout}
+Der in Kapitel \ref{sec:konf} konzipierte Local Internet Breakout erfordert spezielle Sicherheitsmaßnahmen, da lokaler Internet-Traffic nicht durch die zentrale Sicherheitsinfrastruktur gefiltert wird.
+
+\subsection*{Wartung und Updates}
+Ein strukturiertes Patch-Management gewährleistet die Aktualität aller Sicherheitskomponenten. Dazu gehören:
+\begin{itemize}
+	\item Automatische Updates der Bedrohungsdatenbanken
+	\item Geplante Wartungsfenster für kritische Sicherheitsupdates der Firewalls
+\end{itemize}
+
+\subsection*{Zusammenfassung der Sicherheitsanforderungen}
+Das entwickelte Sicherheitskonzept adressiert alle in Kapitel \ref{sec:anforderungen} definierten sicherheitsrelevanten Anforderungen:
+
+\begin{itemize}
+	\item \textbf{ANF-06:} wird durch Ende-zu-Ende-Verschlüsselung und umfassende Firewall-Funktionen erfüllt.
+	\item \textbf{ANF-07:} wird durch automatisierte Sicherheitsprozesse und zentrale Verwaltung gewährleistet.
+\end{itemize}
+Die Integration der Sicherheitsfunktionen in die \ac{sd-wan}-Architektur schafft eine einheitliche, administrierbare und skalierbare Lösung.

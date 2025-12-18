@@ -1,0 +1,34 @@
+% !TeX spellcheck = de_DE
+
+\subsection*{Hardware-Anforderungen}
+Für die Implementierung der \ac{sd-wan}-Lösung sind folgende Hardware-Komponenten erforderlich. Diese werden aus der offiziellen Palo Alto Webseite und deren Anforderungen an \ac{sd-wan} übernommen:
+\begin{itemize}
+	\item Palo Alto Networks PA-Series Firewalls an allen Standorten
+	\item Zentrale Management Platform für die Controller-Funktionen
+	\item Ausreichende Internetbandbreite
+	\item Redundante WAN-Verbindungen für kritische Standorte
+\end{itemize}
+
+\subsection*{Software und Lizenzen}
+\begin{itemize}
+	\item PAN-OS Version 11.0 oder höher auf allen Edge-Geräten
+	\item \ac{sd-wan}-Lizenz für alle PA-Series Geräte
+	\item Management-Lizenz
+	\item Threat Prevention und URL-Filtering Lizenzen für Sicherheitsfunktionen
+\end{itemize}
+
+\subsection*{Netzwerk-Voraussetzungen}
+\begin{itemize}
+	\item Öffentliche IP-Adressen für alle Edge-Geräte
+	\item NAT-Durchleitung für \ac{ipsec}-Tunnel
+	\item Interne IP-Adressbereiche ohne Überschneidungen zwischen Standorten
+	\item VLAN-Konfiguration für Netzwerksegmentierung
+\end{itemize}
+
+\subsection*{Organisatorische Anforderungen}
+\begin{itemize}
+	\item Geschultes IT-Personal für Konfiguration und Betrieb
+	\item Koordination mit lokalen ISPs für Internetanbindungen
+	\item Wartungsfenster für Migration der bestehenden Infrastruktur
+	\item Backup-Konzept für Konfigurationsdaten
+\end{itemize}

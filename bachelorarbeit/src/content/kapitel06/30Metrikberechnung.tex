@@ -1,0 +1,36 @@
+% !TeX spellcheck = de_DE
+\section{Migration und Rollout}
+
+Die Migration von der bestehenden Layer-2-basierten Standortanbindung hin zu einer modernen SD-WAN-Lösung stellt einen kritischen Schritt im Gesamtprojekt dar. Um einen reibungslosen Übergang zu gewährleisten und Betriebsunterbrechungen zu vermeiden, ist ein strukturiertes und schrittweises Vorgehen erforderlich.
+
+\subsection*{Migrationsstrategie}
+Die Migration sollte in mehreren Phasen erfolgen:
+\begin{itemize}
+	\item \textbf{Vorbereitung und Planung:} \\ 
+	Erfassung der aktuellen Netzwerkinfrastruktur, Identifikation aller betroffenen Standorte, Erstellung eines detaillierten Migrationsplans und Festlegung von Verantwortlichkeiten. Frühzeitige Kommunikation mit allen Stakeholdern ist essenziell.
+	\item \textbf{Pilotphase:} \\ 
+	Auswahl eines oder mehrerer Pilotstandorte mit unterschiedlichen Anforderungen und Rahmenbedingungen. Durchführung der Migration im kleinen Rahmen, um Prozesse, Konfigurationen und Abläufe zu validieren. Auswertung der Ergebnisse und Anpassung des Migrationsvorgehens.
+	\item \textbf{Schrittweise Migration:} \\ 
+	Nach erfolgreicher Pilotierung erfolgt die sukzessive Umstellung der weiteren Standorte. Dabei sollte jeweils nur ein Standort zur Zeit migriert werden, um im Fehlerfall schnell reagieren zu können. Die parallele Nutzung von alter und neuer Infrastruktur (Parallelbetrieb) ist für eine Übergangszeit sinnvoll.
+	\item \textbf{Abschluss und Optimierung:} \\ 
+	Nach der Migration aller Standorte erfolgt die abschließende Optimierung der Konfiguration, das Abschalten der alten Layer-2-Verbindungen und die Dokumentation der neuen Infrastruktur.
+\end{itemize}
+
+\subsection*{Herausforderungen und Risiken}
+\begin{itemize}
+	\item \textbf{Downtime und Betriebsunterbrechungen:} Die Migration sollte möglichst außerhalb der produktiven Kernzeiten erfolgen. Ein detaillierter Fallback-Plan ist vorzuhalten.
+	\item \textbf{Kompatibilität:} Unterschiedliche Standorte können verschiedene technische Voraussetzungen und Altgeräte haben. Vorab-Kompatibilitätsprüfungen sind notwendig.
+	\item \textbf{Schulungsbedarf:} Das Betriebspersonal muss rechtzeitig auf die neuen SD-WAN-Funktionen und das zentrale Management geschult werden.
+	\item \textbf{Kommunikation:} Eine enge Abstimmung mit den Nutzern und lokalen Ansprechpartnern ist entscheidend, um Akzeptanz und reibungslose Abläufe zu sichern.
+\end{itemize}
+
+\subsection*{Empfehlungen für die Praxis}
+\begin{itemize}
+	\item Zunächst mit Standorten beginnen, die eine geringe Komplexität und hohe Ausfallsicherheit aufweisen.
+	\item Den Parallelbetrieb von alter und neuer Infrastruktur für eine Übergangszeit sicherstellen.
+	\item Nach jeder Migrationswelle eine strukturierte Auswertung und Lessons Learned durchführen.
+	\item Die Monitoring- und Reporting-Funktionen von Anfang an aktivieren, um Probleme frühzeitig zu erkennen.
+	\item Die Migration als kontinuierlichen Verbesserungsprozess verstehen und regelmäßig Optimierungen vornehmen.
+\end{itemize}
+
+Durch ein strukturiertes Vorgehen, eine sorgfältige Planung und die Einbindung aller Beteiligten kann die Migration auf SD-WAN erfolgreich und mit minimalen Risiken umgesetzt werden.

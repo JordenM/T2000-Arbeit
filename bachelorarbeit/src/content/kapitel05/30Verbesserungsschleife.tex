@@ -1,0 +1,39 @@
+% !TeX spellcheck = de_DE
+
+Die Konfiguration des \ac{sd-wan} stellt den entscheidenden Schritt dar, um die zuvor entwickelte Architektur praktisch umzusetzen. Sie umfasst die Definition von Richtlinien, die Umsetzung des Local Internet Breakout, die Integration zukünftiger Cloud Breakout sowie die Sicherstellung von Redundanz, Sicherheit und Transparenz. Ziel ist es, eine einheitliche und wartbare Konfiguration zu schaffen, die für alle Standorte gleichermaßen gültig ist und zentrale Anforderungen (Kapitel \ref{sec:anforderungen}) zuverlässig abdeckt.
+
+\subsection*{Policy-Design}
+Ein zentraler Vorteil von \ac{sd-wan} liegt im einheitlichen, zentralen Policy-Management. Alle Standorte erhalten identische Richtliniensätze, die zentral definiert und bei Änderungen automatisiert ausgerollt werden. Dies reduziert den administrativen Aufwand und verhindert inkonsistente Konfiguration. \\
+Die Policies orientieren sich an Anwendungen, nicht an physischen Netzen. Dadurch können beispielsweise Videostreams priorisiert werden, während E-Mail-Verkehr oder Software-Updates nachrangig behandelt werden. Für den \ac{swr} ist dies insbesondere im Hinblick auf die Echtzeitübertragung von Audio- und Videoinhalten essenziell (ANF-05).
+
+\subsection*{Local Internet Breakout}
+Ein Local Internet Breakout (\ac{lbo}) ermöglicht es, Internet-Traffic direkt am Standort auszuleiten, anstatt diesen über die zentrale Infrastruktur in Deutschland zu leiten. Der Hauptvorteil besteht darin, dass Mitarbeiter vor Ort ohne Umwege auf lokale Internetdienste zugreifen können, was insbesondere für zeitkritische Recherchen und standortspezifische Anwendungen essenziell ist (siehe Kapitel \ref{sec:anforderungen}). Zusätzlich wird durch diese Konfiguration Bandbreite auf den \ac{vpn}-Tunneln eingespart und die Nutzererfahrung insgesamt verbessert. Dass diese Konfiguration notwendig ist, steht außer Frage, jedoch gibt es einige Möglichkeiten, dies genauer festzulegen.
+\begin{itemize}
+	\item \textbf{\ac{lbo} für allen Internet-Traffic} \\
+	Hier würde aller Traffic, der nicht explizit ein Ziel in unserem Intranet in Deutschland hätte, direkt am lokalen Edge-Gerät ins Internet gelassen werden. Dieser Traffic geht dann nicht über die \ac{vpn}-Verbindung.
+	\item \textbf{\ac{lbo} nur für lokalen Internet-Traffic} \\
+	Hier geht nur der Traffic direkt raus, dessen Zieladresse in dem jeweiligen Land des Standortes liegt. Aller andere Traffic, der Ziele in anderen Ländern hat, würde weiterhin über die \ac{vpn}-Verbindung nach Stuttgart gehen.
+\end{itemize}
+Der Vorteil von Option 1 wäre die Lastverringerung auf der \ac{vpn}-Verbindung. Jedoch bringt diese Option ein Risiko mit sich, welches bisher nicht zum Vorschein kam. Da dann auch Traffic, der zwar nicht ins Intranet des \ac{swr}, jedoch aber für Deutschland bestimmt ist, im jeweiligen Land des Standorts ins Internet geht, treten möglicherweise hier Zugangsbeschränkungen (Geoblocking) auf. Es kann dazu führen, dass Mitarbeiter in zum Beispiel Johannesburg nicht auf Deutsche Online-Medien zugreifen könnten. Dies ist jedoch notwendig und darf nicht beeinträchtigt werden. \\
+Die zweite Option birgt diese Gefahr nicht. Hier wird nur der für zum Beispiel Südafrika bestimmte Traffic direkt ins Internet gelassen. Das würde die Anforderung ANF-02 erfüllen und die geringste Wahrscheinlichkeit für Zugangsbeschränkungen mit sich bringen. \\
+Der \ac{lbo} würde dann wie folgt aussehen:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/architektur/LBO}
+	\caption{Local Internet Breakout am Beispiel Johannesburg (Eigene Darstellung)}
+\end{figure}
+
+\subsection*{Cloud Breakout}
+Obwohl aktuell nicht zwingend gefordert, ist die Unterstützung von Cloud Breakout zukunftsweisend. Der \ac{cbo} ist eine Erweiterung des \ac{lbo}. Hierbei wird Traffic, der in Richtung einer Cloud geht (z.B. Microsoft Teams Traffic) ebenfalls über den \ac{lbo} geleitet, um eine möglichst schnelle Verbindung mit geringer Latenz zu Microsoft zu haben.\\
+Eine Erweiterung dessen wäre auch eine direkte \ac{vpn}-Verbindung zu relevanten Cloud-Anbietern. Diese Option hätte zwar keine Geschwindigkeitsvorteile und auch die Qualität ist durch die Tunnelung eher schlechter, aber dafür wäre aufgrund der Verschlüsselung ein Sicherheitsstandard gegeben.
+
+\subsection*{Anwendungsorientierte Steuerung}
+Das \ac{sd-wan} identifiziert den Datenverkehr auf Applikationsebene und wählt dynamisch den optimalen Übertragungspfad. Kritische Anwendungen wie beispielsweise Live-Streams erhalten stets Vorrang und werden über die Verbindung mit den besten Qualitätsparametern (Latenz, Jitter, Paketverlust) geleitet. Weniger zeitkritische Anwendungen (z.B. Dateiübertragungen) können über sekundäre Verbindungen laufen. Diese Mechanismen sichern die Einhaltung der Anforderungen ANF-01 und ANF-05 ab.
+
+\subsection*{Lastverteilung und Redundanz}
+Redundanz wurde bereits in der Architektur in Kapitel \ref{sec:techArch} besprochen. Es sollte jedoch festgehalten werden, dass die mehreren Leitungen und Anbindungen der einzelnen Standorte nicht als Primär und Sekundär angesehen werden sollten. Vielmehr werden alle Verbindungen parallel und bestmöglich genutzt. Lediglich im Ausfall einer Verbindung wird der komplette Traffic über die jeweils andere Verbindung geleitet. Im Falle, dass gar keine Verbindung nach Deutschland möglich sein sollte, muss der komplette Internet-Traffic direkt über das \ac{lbo} ausgeleitet werden, um den Standort zumindest mit Internet zu versorgen.
+
+\subsection*{Monitoring- und Reporting-Konfiguration}
+Für eine transparente und zuverlässige Betriebsführung werden umfangreiche Moni\-toring- und Reporting-Mechanismen konfiguriert:\\
+Das umfasst die Überwachung der Infrastruktur, also der Leitungen, der \ac{vpn}-Verbin\-dungen und des Zustands der Edge-Geräte, um mögliche Fehlfunktionen direkt zu erkennen. Die Netzwerkmetriken, wie Paketverluste, Latenzen und Jitter müssen kontinuierlich erfasst werden, um die Gesamtqualität einer Verbindung zum Standort zu bewerten. Bei \ac{sd-wan} ist nicht mehr unbedingt die genaue Leistung einer Leitung relevant, da sich um diese Unterschiede das Edge-Gerät kümmert, es geht vielmehr um die generelle Anbindung. Es muss deutlich sein, ob zum Beispiel das Video-Streaming ohne Probleme möglich ist.\\
+Darüber hinaus empfiehlt sich ein zentrales Logging, das Ereignisse jeglicher Art speichert, um in regelmäßigen Intervallen Rückschlüsse auf Verbindungsqualität und Leitungsqualität ziehen zu können. Diese Daten können dann optimal in einem entsprechenden Dashboard grafisch aufbereitet werden.

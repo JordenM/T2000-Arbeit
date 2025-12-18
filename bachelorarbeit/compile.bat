@@ -1,0 +1,1 @@
+kotlinc -script compile.kts
