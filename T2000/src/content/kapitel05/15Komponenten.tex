@@ -1,24 +1,2 @@
 % !TeX spellcheck = de_DE
 
-Die Architektur gliedert sich in drei funktionale Ebenen, die zusammen das Gesamtsystem bilden~\cite[594]{segecSDWANArchitectureFunctions2020}:
-\begin{itemize}
-	\item \textbf{Control Plane:} \\
-	Die zentrale Steuerungsebene wird durch den Orchestrator als zentrales System realisiert. Sie verwaltet sämtliche Richtlinien, Netzwerktopologien und Konfigurationsparameter. Über den Orchestrator werden Routing-Regeln, Sicherheitsrichtlinien und \ac{qos}-Vorgaben definiert und an die Standorte verteilt. Dadurch wird eine konsistente und automatisierte Konfiguration ermöglicht, die Änderungen ohne manuellen Aufwand in allen Standorten ausrollt~\cite[596]{segecSDWANArchitectureFunctions2020}.
-	
-	\item \textbf{Data Plane:} \\
-	Die Datenebene ist an den einzelnen Standorten implementiert und sorgt dafür, dass der eigentliche Datenverkehr weitergeleitet wird. Hierfür sind die Edge-Geräte an den einzelnen Standorten zuständig. Zu den Aufgaben gehören der Aufbau von verschlüsselten Tunneln, das kontinuierliche Messen von Latenz, Jitter und Paketverlust sowie die Auswahl des richtigen Pfads für jeden Datenstrom anhand dieser Parameter. Damit können auch in Umgebungen mit Leitungen unterschiedlicher Qualität stabile und performante Verbindungen gewährleistet werden~\cite[595f]{segecSDWANArchitectureFunctions2020}.
-	
-	\item \textbf{Management Plane:} \\
-	Die Verwaltungsebene, oft auch Orchestration Plane genannt, wird durch zentrale Management-Komponenten abgebildet. Sie ist für Monitoring, Fehleranalyse und Planung zuständig. Hier werden die Daten der einzelnen Verbindungen gesammelt, analysiert und für den Menschen dargestellt. Dies ermöglicht eine bessere Kontrolle und stellt sicher, dass bei Ausfällen schnell Maßnahmen eingeleitet werden können~\cite[596]{segecSDWANArchitectureFunctions2020}.
-\end{itemize}
-Obwohl die Control und die Management Plane beide das \ac{sd-wan} verwalten gibt es einen Unterschied: Während die Control Plane die technische Steuerung und Pfadwahl im Netzwerk übernimmt, konzentriert sich die Management Plane auf die übergeordnete Verwaltung, Überwachung und Policy-Umsetzung.
-
-\subsection*{Zentrale Komponenten}
-Die Architektur wird durch mehrere zentrale Komponenten realisiert. Diese wurden schon in Kapitel \ref{sec:sd-wan-grundlagen} angesprochen und werden jetzt in ihrer Funktion für das folgende Konzept vorgestellt. Die Komponenten erfüllen den Zweck, die soeben vorgestellten Architekturebenen in Geräten abzubilden.
-
-\begin{itemize}
-	\item \textbf{\ac{sd-wan}-Orchestrator} \\
-	Der Orchestrator ist die zentrale Steuerungseinheit, die Richtlinien verteilt und Konfigurationsänderungen koordiniert. Er fungiert als Schnittstelle zwischen den betrieblichen Anforderungen und der technischen Umsetzung im Netzwerk
-	\item \textbf{Edge-Gerät} \\
-	In jedem Auslandsstudio wird ein Edge-Gerät betrieben, das den Übergang zwischen dem lokalen \ac{lan} und dem \ac{sd-wan}-Overlay herstellt. Diese Geräte sind in der Lage, mehrere \ac{wan}-Leitungen parallel zu terminieren, dynamisch zwischen Verbindungen umzuschalten und den lokalen Internet-Traffic direkt auszuleiten.
-\end{itemize}

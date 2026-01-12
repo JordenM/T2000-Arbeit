@@ -1,3 +1,5 @@
+*.aux
+*.bib
 *.acn
 *.acr
 *.alg

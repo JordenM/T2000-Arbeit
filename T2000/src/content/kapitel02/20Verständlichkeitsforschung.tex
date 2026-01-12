@@ -1,25 +1,14 @@
 % !TeX spellcheck = de_DE
 
-\subsection*{Was ist SD-WAN?}
-Ein \acl{sd-wan} ist eine moderne Netzwerkarchitektur, die die Konzepte des \ac{sdn} auf \acp{wan} überträgt. \ac{sd-wan} zeichnet sich durch die klare Trennung von den Steuerungs- und Datenebenen aus. Während die Steuerung zentral erfolgt, wird der Datenverkehr dezentral und hardwareunabhängig verarbeitet~\cite{WasIstSDWAN}. Gartner definiert \ac{sd-wan} als \ac{wan} Ersatz, der transporttechnologieunabhängig ist und dynamisch, richtliniengesteuert sowie anwendungsfokussiert Pfade auswählt~\cite{DefinitionSoftwareDefinedWAN}.\\
-\ac{sd-wan} zeichnet sich durch vier Merkmale aus~\cite{WasIstSDWAN}:
-\begin{itemize}
-	\item \textbf{Unterstützung verschiedener Verbindungstypen:} \ac{sd-wan} funktioniert unabhängig von den verwendeten Übertragungstechnologien. Es unterstützt auch die Kombination unterschiedlicher Technologien. Diese können kombiniert, gebündelt oder als verschiedene Pfade angesehen werden.
-	\item \textbf{Dynamische Pfadwahl:} Die Pfade werden dynamisch anhand der Merkmale der Verbindung und der Leitungsqualität ausgewählt. Es wird schnell auf Leistungseinbrüche reagiert und Anwendungen können den für sie perfekten Pfad nutzen. So kann eine Anwendung mit Anforderungen an niedrige Latenzen zum Beispiel über den Pfad mit der geringsten Latenz geroutet werden.
-	\item \textbf{Zentrale Verwaltung:} Durch die Trennung der Verwaltung von den Datenebenen kann diese zentral und standortunabhängig stattfinden. Viele \ac{sd-wan}-Anbieter setzen hierbei auf eine Verwaltungsplattform in einer Cloud.
-	\item \textbf{Skalierbarkeit:} Unter anderem durch die Unabhängigkeit seitens der Übertragungstechnologien ist auch die Skalierbarkeit einfach. Es können ohne großen Aufwand neue Pfade oder neue Standorte angeschlossen werden, aufgrund der Dynamik der \ac{sd-wan}-Technologie ohne Ausfälle oder großen Konfigurationsaufwand.
-\end{itemize}
+Die Verständlichkeitsforschung untersucht, welche sprachlichen und strukturellen Merkmale das Verstehen von Texten beeinflussen.
+Zentrale Modelle gehen davon aus, dass Textverständlichkeit kein rein sprachliches Phänomen ist, sondern aus dem Zusammenspiel von Textmerkmalen, Vorwissen der Rezipierenden und situativem Kontext entsteht.
+Klassische Verständlichkeitsmodelle wie das Hamburger Verständlichkeitsmodell unterscheiden dabei Dimensionen wie Einfachheit, Gliederung, Prägnanz und Anregung\cite{}.
 
-Ein \ac{sd-wan} kann Anwendungsverkehr auf Layer-2 bis Layer-7 identifizieren und priorisieren. Dies passiert meist auf Basis vorher festgelegter Richtlinien und Regeln. So können geschäftskritische Prozesse analog zu \ac{qos}-Richtlinien bevorzugt werden. Der Unterschied ist, dass hier nicht nur priorisiert wird, sondern sogar anwendungsabhängig andere Pfade genutzt werden können, um die beste Qualität zu erreichen.
+Für den Kontext Leichter Sprache sind insbesondere jene Forschungsansätze relevant, die Verständlichkeit operationalisierbar machen.
+Studien zeigen, dass Faktoreen wie Satzlänge, syntaktische Komplexität, Wortfrequenz und Textkohärenz signifikanten Einfluss auf das Textverstehen haben.
+Diese Merkmale lassen sich formal erfassen und bilden die Grundlage für regelbasierte und statistische Analyseverfahren \cite[S. 73-92]{maas_leichte_2015}; \cite[S. 87-94]{maas_handbuch_2018}.
 
-\subsection*{Zentrale Komponenten}
-\ac{sd-wan} besteht aus zwei zentralen Komponenten: der Verwaltungskomponente und der Datenkomponente. Letztere ist meist in Firewalls integriert oder wird von Firewall-Herstellern als Add-on angeboten. Das hat den Vorteil der integrierten Sicherheit. Zumal \ac{sd-wan} per se nicht auf Sicherheit spezialisiert ist. Durch die Kombination mit Firewalls und Verschlüsselung jedoch lassen sich mit \ac{sd-wan} sichere Verbindungen aufbauen~\cite{woodHowMakeSDWAN2017}.\\
-Die Verwaltungskomponente, welche zentral und unabhängig von der Datenkomponente implementiert ist, ist meist eine Software-Lösung. Abhängig vom Hersteller wird diese entweder als Cloud-Only-Lösung angeboten oder auch zum Einsatz in privaten Unternehmensnetzwerken freigegeben. Jedoch ist die garantierte Erreichbarkeit dieser Verwaltungseinheit essenziell und daher der Cloud-Einsatz empfohlen. Die Erreichbarkeit ist wichtig, da hier nicht nur die Verbindungen verwaltet werden, sondern auch zentral die Policies und Richtlinien definiert werden. Aus diesem Grund müssen die einzelnen Endpunkte beziehungsweise Firewalls stetig auf diese Einheit zugreifen können, um einen stets aktuellen Richtliniensatz zu gewährleisten~\cite[594]{segecSDWANArchitectureFunctions2020}.
-
-\subsection*{Unterschiede zu klassischen WAN-Lösungen}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{images/sd-wan-vergleich}
-	\caption{Vergleich von Klassischem \ac{wan} zu \ac{sd-wan}. Bild aus:~\cite[593]{segecSDWANArchitectureFunctions2020}}
-\end{figure}
-\ac{sd-wan} kann nicht als Alternative zu klassischem \ac{wan} gesehen werden. Deshalb ist ein Vergleich nicht nur schwierig, sondern kaum möglich. Es handelt sich um eine Weiterentwicklung des klassischen \ac{wan}, auf dessen Grundlage es aber weiterhin beruht. Es können mit \ac{sd-wan} verschiedene klassische \ac{wan}-Ansätze kombiniert und die Vorteile der jeweiligen addiert werden. Mithilfe der Technologie kann aus mehreren nachteilsbehafteten \ac{wan}-Verbindungen eine Verbindung mit deutlich besseren Werten geschaffen werden~\cite[595]{segecSDWANArchitectureFunctions2020}.
+Aus technischer Sicht ist dabei entscheidend, dass Verständlichkeit nicht als binäre Eigenschaft modelliert werden kann.
+Vielmehr handelt es sich um ein graduelles Konstrukt, das abhängig von Zielgruppe und Nutzungskontext variiert.
+Für automatische Systeme zur Textbewertung und -generierung bedeutet dies, dass mehrere Indikatoren kombiniert werden müssen und Verständlichkeit als mehrdimensionles Bewertungsproblem zu behandeln, anstatt einzelne Kennzahlen isoliert zu betrachten \cite[S. 41-43]{maas_handbuch_2018}; \cite[S. 95-99]{maas_handbuch_2018}.
+Die Verständlichkeitsforschung liefert somit weniger konkrete Regeln als vielmehr theoretische und empirische Grundlagen, auf denen technische Modelle zur Analyse, generierung und Evaluation verständlicher Texte aufbauen können \cite[S. 101-108]{maas_leichte_2015}.
