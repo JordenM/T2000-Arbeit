@@ -1,1 +1,19 @@
 % !TeX spellcheck = de_DE
+
+\subsection{Grundlagen zu Large Language Models (LLMs)}
+Large Language Models (LLMs) sind statistische Sprachmodelle, die auf sehr großen Mengen textueller Daten trainiert werden, um sprachliche Muster zu erlernen und Texte zu generieren.
+Technisch basieren moderne LLMs überwiegend auf neuronalen Netzarchitekturen, insbesondere auf dem Transformer-Modell, das eine parallele Verarbeitung von Sequenzen ermöglicht und langfristige Abhängigkeiten effizient abbildet.
+Durch Training auf umfangreichen Korpora entwickeln LLMs generalisierte sprachliche Repräsentationen, die vielfältige Aufgaben wie Textgenerierung, Zusammenfassung oder Umformulierung erlauben \cite[S. 1-11]{vaswani_attention_nodate}; \cite[Section 3]{brown_language_2020}.
+
+\subsection{Funktionsweise von LLMs}
+Die Funktionsweise von LLMs beruht auf wahrscheinlichkeitsbasierten Vorhersagen des jeweils nächsten Tokens auf Basis des bisherigen Kontexts. Dabei werden Wahrscheinlichkeitsverteilungen über mögliche Fortsetzungen berechnet, aus denen sequenziell Text generiert wird. Dieses Verfahren führt zu formal kohärenten und grammatikalisch korrekten Ausgaben, impliziert jedoch kein semantisches Verständnis im menschlichen Sinne.
+LLMs reproduzieren statistische Regularitäten der Trainingsdaten und sind daher anfällig für die Übernahme komplexer Strukturen oder Annahmen, die der Zielsetzung verständlicher Texte konträr wirken können.
+
+\subsection{Prompting-Grundlagen}
+Prompting bezeichnet die gezielte Steuerung von Sprachmodellen durch Eingabetexte, die Aufgabenstellung, Stil und gewünschte Eigenschaften der Ausgabe beschreiben.
+Für die Textvereinfachung und Leichte Sprache können Prompts genutzt werden, um Anforderungen wie kurze Sätze, einfache Wörter oder explizite Erklärungen vorzugeben. Studien zeigen jedoch, dass Prompting allein keine verlässliche Einhaltung formaler Verständlichkeitsregeln garantiert, da die Umsetzung stark von Modellarchitektur, Trainingsdaten und Kontext abhängt \cite{alva-manchego_data-driven_2020} \cite[S. 95-99]{maas_handbuch_2018}.
+
+\subsection{Stärken und Schwächen im Kontext Leichte Sprache}
+Zu den Stärken von LLMs im Kontext Leichter Sprache zählen ihre Fähigkeit zur schnellen Textproduktion, zur Umformulierung bestehender Texte und zur Generierung inhaltlich verständlicher Vereinfachungen.
+Gleichzeitig bestehen deutliche Schwächen, insbesondere die fehlende explizite Zielgruppenmodellierung, die unzuverlässige Einhaltung fester Regeln sowie die Gefahr semantischer Verzerrungen oder Informationsverluste.
+Für einen verlässlichen Einsatz in der leichten Sprache ist daher eine Einbettung von LLMs in hybride Systeme erforderlich, die generierte Texte mittels regelbasierter Prüfungen und quantitativer Verständlichkeitsmetriken evaluieren und iterativ anpassen \cite[S. 95-99]{maas_handbuch_2018}.
