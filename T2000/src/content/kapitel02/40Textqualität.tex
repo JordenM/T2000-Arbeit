@@ -1,1 +1,33 @@
 % !TeX spellcheck = de_DE
+
+Die Bewertung von Textqualität ist eine zentrale Voraussetzung für die automatisierte Erzeugung verständlicher Texte. 
+Im Kontext Leichter Sprache dient sie dazu, die Einhaltung formaler Regeln, die sprachliche Einfachheit sowie die inhaltliche Angemessenheit systematisch zu überprüfen.
+Für technische Systeme ist dabei entscheidend, dass Textqualität messbar gemacht werden kann, um automatisierte Entscheidungen für die iterative Verbesserung der Texte zu ermöglichen \cite[S. 85-90]{maas_handbuch_2018}.
+
+\subsection{Lesbarkeitsformeln}
+Lesbarkeitsformeln gehören zu den grundlegenden Verfahren der Textbewertung.
+Sie bewerten Verständlichkeit anhand Textmerkmale wie Satzlänge, Wortlänge oder Silbenanzahl.
+Für die deutsche Sprache werden unter anderem Flesch-Reading-Ease-Index, die Wiener Sachtextformel oder auch der LIX-Index eingesetzt.
+Diese Verfahren liefern schnell berechenbare Zahlen und eignen sich daher gut für automatisierte Analysen. Dabei werden jedoch weder semantische Kohärenz, noch die Zielgruppenangemessenheit betrachtet \cite[S. 14-19]{Amstad}; \cite[S. 73-76]{maas_leichte_2015}.
+
+\subsection{Linguistische Metriken}
+Über klassische Lesbarkeitsformeln hinaus werden in der Forschungen linguistische Metriken eingesetzt, die detailliertere Aussagen über sprachliche Komplexität erlauben.
+Dazu zählen unter anderem der Anteil komplexer Wörter, syntaktische Tiefe, Wortfrequenzen oder die Verwendung von Funktionswörtern.
+Solche Metriken sind besonders relevant für Leichte Sprache, da viele Regeln direkt auf messbare linguistische Eigenschaften abzielen.
+Sie bilden eine wichtige Grundlage für regelbasierte Prüfungen und statistische Bewertungssysteme \cite[S. 87-94]{maas_handbuch_2018}.
+
+\subsection{Regelbasierte Validierung}
+Regelbasierte Validierung dient der Überprüfung von Texten explizit auf Verstöße gegen definierte Sprach- und Formatierungsregeln. 
+Im Kontext Leichter Sprache basieren diese Regeln unter anderem auf dem Regelwerk des Netzwerks Leichte Sprache sowie auf der DIN SPEC 33429.
+Technisch lassen sich solche Regeln durch formale Heuristiken oder spezialisierte Werkzeuge wie LanguageTool abbilden.
+Der Vorteil regelbasierter Ansätze liegt in ihrer Transparenz und Nachvollziehbarkeit, während ihre Starrheit die flexible Anpassung an unterschiedliche Kontexte erschwert \cite[S. 5-14]{DINSPEC334292019}; \cite{naber_rule-based_nodate}.
+
+\subsection{Semantische Evaluation}
+Semantische Evaluationsverfahren zielen darauf ab, die inhaltliche Qualität eines Textes zu bewerten, insbesondere im Hinblick auf Bedeutungswahrung, Vollständigkeit und Kohärenz.
+In der automatischen Textvereinfachung werden hierfür zunehmend lernbasierte Metriken eingesetzt, die Referenztexte oder semantische Repräsentationen vergleichen.
+Beispiele hierfür sind Metriken wie LENS, die speziell für die Bewertung vereinfachter Texte entwickelt wurden.
+Für Leichte Sprache sind solche Verfahren besonders relevant, da formale Einfachheit allein nicht garantiert, dass Inhalte korrekt und vollständig vermittelt werden \cite[S. 133-136]{alva-manchego_data-driven_2020}; \cite{maddela_lens_2023}.
+
+Schlussfolgernd reicht keine einzelne Metrik aus, um die Textqualität ausreichend bewerten zu können.
+Für technische Systeme im Kontext Leichter Sprache ist daher eine Kombination aus Lesbarkeitsformeln, linguistischen Metriken, regelbasierter Validierung und semantischer Evaluation erforderlich, um ausreichende Qualität der Texte sicher stellen zu können.
+

@@ -1,2 +1,61 @@
 % !TeX spellcheck = de_DE
 
+Die Analyse der Bestehenden SWR-Pipeline bildet die Grundlage für spätere Erweiterung und Integration automatisierter Verfahren zur Erzeugung und Bewertung Leichter Sprache.
+Ziel dieses Abschnitts ist es, die aktuelle Pipeline strukturiert zu erfassen, ihre Module zu beschreiben und potenzielle Integrationspunkte für zusätzliche Analyse-, Generierungs- und Validierungskomponenten zu identifizieren.
+
+\subsection{Beschreibung der Pipeline-Module}
+Die bestehende SWR-Pipeline lässt sich in mehrere logisch voneinander getrennte Module aufteilen, die jeweils spezifische Aufgaben innerhalb des Prozesses übernehmen. Die folgende Beschreibung dient der systematischen Analyse der einzelnen Module.
+
+\textbf{Fact Extractor}\\
+Der Fact Extractor bildet den Einstiegspunkt der Pipeline und übernimmt die initiale inhaltliche Analyse des Ausgangstextes in Standardsprache.
+Mithilfe eines Sprachmodells (GPT-4) werden zentrale Fakten, Ereignisse und Kernaussagen extrahiert.
+Der ursprüngliche Text wird dabei auf seine wesentlichen Inhalte reduziert und strukturiert.
+Der Fokus der Faktenextraktion liegt auf den inhaltlichen Hauptelementen eines Artikels:
+\begin{itemize}[label=\textbullet, nosep]
+	\item \textbf{Was} ist passiert?
+	\item \textbf{Wer} war beteiligt?
+	\item \textbf{Wo} ist das Ereignis erfolgt?
+	\item \textbf{Wen} betrifft das Geschehen?
+\end{itemize}
+Diese Strukturierung dient dazu, die inhaltliche Komplexität frühzeitig einzugrenzen und die Grundlage für zielgruppenorientierte Weiterverarbeitung zu schaffen.
+Dabei kann für jeden Text ein prozentualer Kürzungsfaktor definiert werden, der angibt, in welchem Umfang der Ausgangstext inhaltlich reduziert werden soll.
+Der Fact Extractor übernimmt damit eine zentrale Filterfunktion innerhalb der Pipeline, da die Erstellung von Texten in Leichter Sprache eine konsequente Auswahl relevanter Inhalte voraussetzt und nicht alle Informationen des Ausgangstextes gleichermaßen berücksichtigt werden müssen.
+
+\textbf{Pre-Editing}\\
+Das Pre-Editing-Modul übernimmt die vorbereitende inhaltliche und strukturelle Aurbereitung der durch den Fact Extractor gewonnenen Informationen.
+Ziel dieses Moduls ist es, potenzielle Verständnishürden bereits vor der eigentlichen Textgenerierung zu reduzieren und die Inhalte in eine für Leichte Sprache geeignete Ausgangsform zu bringen.
+Dazu gehören:
+\begin{itemize}[label=\textbullet, nosep]
+	\item Die Vereinheitlichung von Begriffen.
+	\item Die Auflösung von Abkürzungen.
+	\item Die Erläuterung von inhaltlichen Bezügen, die im Ausgangstext Vorwissen voraussetzen.
+	\item Die Vereinfachung von komplexen oder mehrdeutigen Strukturen.
+	\item Der gezielte Ersatz schwieriger Wörter durch verständlichere Alternativen.
+\end{itemize}
+Damit wird die spätere Generierung eines verständlichen Textes unterstützt.
+Das Pre-Editing fungiert als vermittelnde Ebene zwischen inhaltlicher Extraktion und sprachlicher Umsetzung.
+
+\textbf{Fakten-Datenbank}\\
+Die Fakten-Datenbank stellt eine zentrale Wissensbasis innerhalb der Pipeline dar.
+In ihr werden die extrahierten Fakten strukturiert gespeichert und für nachfolgende Verarbeitungsschritte verfügbar gemacht.
+Diese zentrale Ablage ermöglicht die Wiederverwendung von Informationen über mehrere Beiträge hinweg und unterstützt somit die Nachvollziehbarkeit der generierten Texten.
+Gleichzeitig bildet die Fakten-Datenbank eine wichtige Grundlage für spätere Validierungsprozesse, da sie als Referenzpunkt für die inhaltliche Korrektheit der erzeugten LS+ Texte fungiert.
+
+\textbf{Hintergrund-Fakten-Retrieval}\\
+Das Modul für Hintergrund-Fakten-Retrieval ergänzt die extrahierten Kerninformationen um kontextuelle Inhalte, die für das Verständnis der Zielgruppe erforderlich sind.
+Viele Ausgangstexte in Standardsprache setzen Vorwissen voraus, das bei den Zielgruppen Leichter Sprache nicht ohne Weiteres vorausgesetzt werden kann.
+Das Hintergrund-Fakten-Retrieval-Modul behebt dieses Problem, indem zusätzliche Erklärungen, Definitionen oder Einordnungen bereitgestellt werden.
+Ziel dieses Moduls ist es, notwendiges Hintergrundwissen in den Text einzubinden und damit die Grundlage für ein vollständiges und verständliches Textverständnis zu schaffen.
+
+\textbf{Generierung des Beitrags in LS+}\\
+Die Generierung des Beitrags in LS+ stellt den zentralen Schritt der Pipeline dar.
+Auf Basis der extrahierten Fakten, der vorverarbeiteten Inhalten sowie der ergänzten Hintergrundinformationen wird ein Text in einer erweiterten Form Leichter Sprache erzeugt.
+Dabei werden die Regeln und Prinzipien der Leichten Sprache mit redaktionellen Anforderungen kombiniert.
+Sprachmodelle können diesen Prozess unterstützen, agieren jedoch innerhalb klar definierter struktureller, sprachlicher und inhaltlicher Vorgaben.
+Ziel ist die Erstellung eines verständlichen, kohärenten und zielgruppengerechten Beitrags, der sowohl formale Verständlichkeitskriterien erfüllt, als auch den relevanten Informationsgehalt des Ausgangstextes beibehält.
+
+\textbf{Validierung}\\
+
+\textbf{Iterative Verbesserung}\\
+
+\textbf{Ausgabe}\\
