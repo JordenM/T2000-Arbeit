@@ -1,9 +1,6 @@
 % !TeX spellcheck = de_DE
 
 Die Analyse der Bestehenden SWR-Pipeline bildet die Grundlage für spätere Erweiterung und Integration automatisierter Verfahren zur Erzeugung und Bewertung Leichter Sprache.
-Ziel dieses Abschnitts ist es, die aktuelle Pipeline strukturiert zu erfassen, ihre Module zu beschreiben und potenzielle Integrationspunkte für zusätzliche Analyse-, Generierungs- und Validierungskomponenten zu identifizieren.
-
-\subsection{Beschreibung der Pipeline-Module}
 Die bestehende SWR-Pipeline lässt sich in mehrere logisch voneinander getrennte Module aufteilen, die jeweils spezifische Aufgaben innerhalb des Prozesses übernehmen. Die folgende Beschreibung dient der systematischen Analyse der einzelnen Module.
 
 \textbf{Fact Extractor}\\
@@ -55,7 +52,19 @@ Sprachmodelle können diesen Prozess unterstützen, agieren jedoch innerhalb kla
 Ziel ist die Erstellung eines verständlichen, kohärenten und zielgruppengerechten Beitrags, der sowohl formale Verständlichkeitskriterien erfüllt, als auch den relevanten Informationsgehalt des Ausgangstextes beibehält.
 
 \textbf{Validierung}\\
+Das Validierungsmodul übernimmt die Qualitätssicherung des generierten LS+ Textes.
+Die Prüfung erfolgt auf formaler als auch inhaltlicher Ebene.
+Dazu zählen die Einhaltung festgelegter Regeln der Leichten Sprache, die Bewertung mittels messbarer Metriken, wie dem Flesch-Index sowie der Abgleich der dargestellten Inhalte mit dem Ursprungstext.
+Ziel der Validierung ist es, sicherzustellen, dass der erzeugte Text verständlich, korrekt und konsistent ist und den Anforderungen der Zielgruppe entspricht.
+Die Validierung ist somit eine zentrale Kontrollinstanz innerhalb der Pipeline.
 
 \textbf{Iterative Verbesserung}\\
+Die iterative Verbesserung beschreibt den Part der Pipeline, welcher im Zuge dieser Arbeit entwickelt wurde.
+Die Ergebnisse aus der Validierung sollen genutzt werden, um den Generierungsprozess gezielt zu verbessern.
+Dabei soll die Beitragsgenerierung so lange durchlaufen werden, bis der ausgegebene Text den Anforderungen entspricht und die gesetzten Metriken erfüllt sind.
+Auf diese Weise entsteht eine Schleife, welche die automatische Verbesserung der Texte auf die gewünschte Qualität ermöglicht.
+Die iterative Verbesserung stellt einen wichtigen Ansatz dar, um die Grenzen der einmaligen Textgenerierung zu überwinden
 
 \textbf{Ausgabe}\\
+Der letzte Schritt in der Pipeline ist die Ausgabe des validierten LS+ Beitrags.
+Damit wird die Schnittstelle zwischen den Anwendern und dem technischen System geschaffen, wodurch die tatsächliche Nutzung ermöglicht wird.
