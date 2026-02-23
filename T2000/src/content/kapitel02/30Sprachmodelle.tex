@@ -11,8 +11,8 @@ Dieser erlaubt es dem Modell, jedes Wort innerhalb einer Sequenz im Verhältnis 
 Durch den Einsatz von Multi-Head-Attention kann das Modell zudem gleichzeitig verschiedene Arten von Beziehungen und Mustern an unterschiedlichen Positionen der Eingabe erkennen.
 Da Transformer keine Informationen über die Reihenfolge von Token besitzen, werden diese durch Positional Encoding (Positionskodierung) explizit in die Eingabe-Embeddings injiziert \cite[S. 4-6]{vaswani_attention_nodate}.
 
-Der Entwicklungsprozes dieser Modelle folgt hauptsächlich dem Ablauf von Pre-training und Fine-tuning.
-Im Rahmen des Pre-trainings lernen die LLMs durch selbstüberwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von zum Beispiel Wikipedia-Dateien vorhersagen.
+Der Entwicklungsprozess dieser Modelle folgt hauptsächlich dem Ablauf von Pre-training und Fine-tuning.
+Im Rahmen des Pre-trainings lernen die LLMs durch selbst überwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von zum Beispiel Wikipedia-Dateien vorhersagen.
 Bevor die Verarbeitung erfolgt, wird der Text mittels Tokenisierung in kleine Einheiten unterteilt, um auch Wörter außerhalb des festen Vokabulars zu haben.
 Nach dem allgemeinen Vortraining kann das Modell durch Fine-tuning mit kleineren, aufgabenspezifischen Datensätzen für konkrete Anwendungen wie Übersetzung oder auch Leichte Sprache spezialisiert werden.
 

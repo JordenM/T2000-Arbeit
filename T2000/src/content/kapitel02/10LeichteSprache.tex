@@ -3,7 +3,7 @@
 Leichte Sprache ist eine bewusst stark vereinfachte Form der deutschen Sprache, deren Ziel es ist, Informationen für Menschen mit eingeschränkter Lese- und Sprachkompetenz zugänglicher zu machen \cite{DINSPEC334292019}; \cite[S. 1]{maas_leichte_2015}.
 Sie ist keine natürlich gewachsene Sprache, sondern eine konstruierte Form der Standardsprache \cite[S. 12]{maas_leichte_2015}.
 Die Regeln der Leichten Sprache betreffen sowohl sprachliche als auch formale Aspekte und sind darauf ausgelegt, kognitive Belastung zu reduzieren und Textverstehen zu erleichtern \cite[S. 11-14]{maas_leichte_2015}; \cite[S. 251]{maas_handbuch_2018}.\\
-Aus technischer Sicher ist Leichte Sprache besonders interessant, da ihre klaren Regeln und wiederkehrende Muster eine Operationalisierung in Form von Prüfregeln, Metriken und automatisierten Validierungsverfahren ermöglichen \cite[S. 584]{maas_handbuch_2018}; \cite[S. 162-163]{maas_leichte_2015}.
+Aus technischer Sicht ist Leichte Sprache besonders interessant, da ihre klaren Regeln und wiederkehrende Muster eine Operationalisierung in Form von Prüfregeln, Metriken und automatisierten Validierungsverfahren ermöglichen \cite[S. 584]{maas_handbuch_2018}; \cite[S. 162-163]{maas_leichte_2015}.
 Gleichzeitig zeigen praktische Anwendungen, dass eine rein regelbasierte Umsetzung nicht ausreicht, um verständliche und zugleich inhaltlich korrekte Texte zu erzeugen, die sowohl verständlich als auch inhaltlich präzise sind, da mechanische Regelanwendungen zu Problemen auf der Textebene führen kann \cite[S. 277]{maas_handbuch_2018}; \cite[S. 291-292]{maas_handbuch_2018}.
 
 Um diesen Problemen zu begegnen wird in dieser Arbeit häufig von Leichter Sprache Plus (LS+) die Rede sein.
@@ -15,8 +15,14 @@ Durch den Einsatz adaptiver, kontextabhängiger Bewertungsverfahren wie LENS kan
 
 \subsection{Historischer Hintergrund}
 Das Konzept der Leichten Sprache ist keine deutsche Erfindung.
-Bereits seit den 1970er-Jahren existiert in Finnland mit Selkokieli eine leicht verständliche Sprachvariante \cite[S. 251-252]{maas_handbuch_2018}; \cite[S. 18]{maas_leichte_2015}.
-Vergleichbare Ansätze finden sich auch in weiteren europäischen Ländern, wie Schweden (Lättläst svenska) und den Niederlanden (Eenvoudig Nederlands) \cite[S. 251-252]{maas_handbuch_2018}; \cite[S. 18]{maas_leichte_2015}.
+Bereits seit den 1970er-Jahren existieren in europäischen Ländern vergleichbare Ansätze für leicht verständliche Sprachvarianten:
+\begin{itemize}
+	\item Selkokieli - Finnisch für: "Klarsprache" oder "Deutliche Sprache"
+	\item Lättlast svenska - Schwedisch für: "Lecihtlesbares Schwedisch"
+	\item Eenvoudig Nederlands - Niederländisch für: "Einfaches Niederländisch"
+\end{itemize}
+
+\cite[S. 251-252]{maas_handbuch_2018}; \cite[S. 18]{maas_leichte_2015}.\\
 Im englischen Raum findet man häufig die Bezeichnungen Plain Language oder Easy-to-Read \cite[S. 251-252]{maas_handbuch_2018}; \cite{DINSPEC334292019}.\\
 Für die europäische Entwicklung war insbesondere die Organisation Inclusion Europe von Bedeutung \cite[S. 252]{maas_handbuch_2018}; \cite[S. 18-19]{maas_leichte_2015}.
 Sie engagierte sich früh für Richtlinien und Qualitätsstandards verständlicher Texte, unter anderem im Projekt Pathways - Wege zur Erwachsenenbildung für Menschen mit Lernschwierigkeiten, und stellte ergänzend praxisorientierte Checklisten bereit \cite[S. 18-20]{maas_leichte_2015}.\\
@@ -29,7 +35,7 @@ Leichte Sprache richtet sich an Menschen mit unterschiedlichen Ursachen eingesch
 Dazu zählen Menschen mit Lernschwierigkeiten, kognitiven Beeinträchtigungen, Demenzerkrankungen oder nicht-deutscher Muttersprache \cite[S. 38]{maas_handbuch_2018}; \cite[S. 16-18]{maas_leichte_2015}.
 Zudem profitieren auch Analphabeten von Texten Leichter Sprache.
 Gemeinsames Merkmal dieser Gruppen ist eine erhöhte kognitive Belastung beim Verstehen komplexer Texte \cite[S. 15-18]{maas_leichte_2015}; \cite[S. 31, 38-45]{maas_handbuch_2018}.\\
-Für die technische Textgenerierung bedeutet dies, dass Verständlichkeit kein statisches Kriterium ist. Vielmehr muss die Zielgruppe genau analysiert und die Texte entsprechend angepasst werden \cite[S. 290, 293]{maas_handbuch_2018}.
+Für die technische Textgenerierung bedeutet dies, dass Verständlichkeit kein statisches Kriterium ist. Vielmehr muss die Zielgruppe genau analysiert und die Texte entsprechend angepasst werden \cite[S. 290, 293]{maas_handbuch_2018}, da Verständlichkeit keine absolute, rein textgebundene Eigenschaft darstellt, sondern als Ergebnis von Texteigenschaften und den individuellen Voraussetzungen der Leser zu sehen ist \cite[S. 32-33]{maas_handbuch_2018}.
 Dies rechtfertigt den Einsatz mehrerer, komplementärer Metriken (wie z.B. LENS oder SARI) zur Bewertung der Textqualität, anstatt sich auf eine einzelne Kennzahl zu verlassen \cite[Abschnitt 1, 4.2]{maddela_lens_2023}.
 
 \subsection{Rechtliche Grundlagen}
@@ -39,7 +45,7 @@ Diese Verpflichtung wird durch die Barrierefreie-Informationstechnik-Verordnung 
 Eine wesentliche fachliche Grundlage bildet zudem die DIN SPEC 33429, welche detaillierte Empfehlungen für Deutsche Leichte Sprache zur Verbesserung der Verständlichkeit und Lesbarkeit liefert \cite{DINSPEC334292019}; .
 Obwohl es sich hierbei nicht um eine verbindliche Norm im strengen Sinne handelt, dient sie der Qualitätssicherung und bietet formal definierte Kriterien, die eine technische Operationalisierung und automatisierte Prüfung ermöglichen \cite{DINSPEC334292019}.
 
-\subsection{Linguistische Merkmale}
+\subsection{Linguistische und typografische Merkmale}
 Die linguistischen Merkmale der Leichten Sprache umfassen systematische Reduktionen auf der Wort-, Satz- und Textebene \cite{DINSPEC334292019}. 
 Zentrale Prinzipien sind die Verwendung eines zentralen Grundwortschatzes, die Vermeidung von Fach- und Fremdwörtern sowie der Verzicht auf komplexe Strukturen wie den Genitiv, das Passiv oder den Konjunktiv \cite{DINSPEC334292019}; \cite{NetzwerkLeichteSprache2022}.
 Auf syntaktischer Ebene werden kurze, einfache Sätze mit nur einer Aussage pro Zeile gefordert \cite[S. 29-40]{NetzwerkLeichteSprache2022}; \cite{DINSPEC334292019}.

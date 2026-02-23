@@ -5,10 +5,57 @@ Im Kontext Leichter Sprache dient sie dazu, die Einhaltung formaler Regeln, die 
 Für technische Systeme ist dabei entscheidend, dass Textqualität messbar gemacht werden kann, um automatisierte Entscheidungen für die iterative Verbesserung der Texte zu ermöglichen \cite[S. 85-90]{maas_handbuch_2018}.
 
 \subsection{Lesbarkeitsformeln}
-Lesbarkeitsformeln gehören zu den grundlegenden Verfahren der Textbewertung.
-Sie bewerten Verständlichkeit anhand Textmerkmale wie Satzlänge, Wortlänge oder Silbenanzahl.
-Für die deutsche Sprache werden unter anderem Flesch-Reading-Ease-Index, die Wiener Sachtextformel oder auch der LIX-Index eingesetzt.
-Diese Verfahren liefern schnell berechenbare Zahlen und eignen sich daher gut für automatisierte Analysen. Dabei werden jedoch weder semantische Kohärenz, noch die Zielgruppenangemessenheit betrachtet \cite[S. 14-19]{Amstad}; \cite[S. 73-76]{maas_leichte_2015}.
+Lesbarkeitsformeln gehören zu den grundlegenden Verfahren der empirischen Analyse von Textverständlichkeit \cite[S. 123-124]{maas_handbuch_2018}.
+Primär dienen sie dazu, die Komplexität von Texten mittels quantifizierbarer Merkmalen zu bewerten \cite[S. 123-124]{maas_handbuch_2018}.
+Dabei ist vor allem die Annahme zugrundeliegend, dass die Komplexität und kognitive Belastung durch die Satzlänge und Wortschwierigkeit beeinflusst werden \cite[S. 149-150]{alva-manchego_data-driven_2020}; \cite[S. 123-124]{maas_handbuch_2018}.
+Die wichtigsten Merkmale werden in Lesbarkeitsformeln transformiert, wodurch die Vorhersage der Lesbarkeit von Texten ermöglicht werden soll \cite[S. 123-124]{maas_handbuch_2018}.\\
+Zu den bekanntesten Verfahren für den deutschsprachigen Raum gehören:
+\begin{longtable}{|p{0.22\textwidth}|p{0.66\textwidth}|}
+	\caption{Beispiele für Lesbarkeitsformeln} \\
+	\hline
+	\textbf{Lesbarkeitsformel} & \textbf{Erklärung}\\
+	\hline
+	\endfirsthead
+	
+	\hline
+	\textbf{Lesbarkeitsformel} & \textbf{Erklärung}\\
+	\hline
+	\endhead
+	
+	Flesch-Reading-Ease-Index (FRE) & 
+	Der FRE ist eine der historisch ältesten und bekanntesten Lesbarkeitsformeln. Ursprünglich für das Englische entwickelt, wurde er von Amstad für das Deutsche adaptiert \cite[S. 166]{maas_handbuch_2018}.
+	
+	Die Formel nutzt zwei Hauptvariablen: die durchschnittliche Satzlänge (ASL, Average Sentence Length) und die durchschnittliche Silbenanzahl pro Wort (ASW, Average number of Syllables per Word). Die deutsche Amstad-Formel lautet: 180 - ASL - (58,5 * ASW) \cite[S. 166]{maas_handbuch_2018}.
+	
+	Hierbei gilt, je höher der Wert, desto einfacher ist der Text \cite[S. 443]{pedrini_medical_2024}.\\
+	\hline
+	
+	LIX-Lesbarkeitsindex & 
+	Der LIX ist ein statisches Verfahren, das ebenfalls auf der Auszählung von Wort- und Satzmerkmalen basiert \cite[S. 442]{pedrini_medical_2024}.
+	
+	Er berechnet sich aus der Summe der mittleren Satzlänge und dem Prozentsatz an langen Wörtern (definiert als Wörter mit mehr als sechs Buchstaben) \cite[S. 442]{pedrini_medical_2024}.
+	
+	Hierbei gilt, je höher der Wert, desto schwieriger der Text \cite[S. 443]{pedrini_medical_2024}.\\
+	\hline
+	
+	Wiener Sachtext Formel (WSTF) & 
+	Die WSTF ist ein speziell für die deutsche Sprache normiertes Verfahren, das häufig Anwendung bei Lehr- und Sachtexten findet  \cite[S. 22-24]{Wisse2015}.
+	
+	Es existieren vier Varianten der Formel, wobei meist die vierte Variante verwendet wird.
+	Die Berechnungen basieren auf dem prozentualen Anteil der Wörter mit drei oder mehr Silben, der mittleren Satzlänge, dem prozentualen Anteil der Wörter mit mehr als sechs Buchstaben und den prozentualen Anteil der Wörter mit nur einer Silbe.
+	
+	Das Ergebnis der WSTF ist ein Zahlenwert zwischen 4 und 15 und steht für die Jahrgangsstufe im Muttersprachenunterricht \cite[S. 22-24]{Wisse2015}.\\
+	\hline
+	
+	gSMOG-Index & 
+	Der SMOG-Index kommt aus dem amglo-amerikanischen und wurde durch Bamberger und Vanecek als gSMOG  (German Simple Measure of Gobbledygook) für das Deutsche angepasst \cite[S. 442]{pedrini_medical_2024}.
+	
+	Die Formel konzentriert sich stark auf die Wortschwierigkeit. Sie setzt die Anzahl der mehrsilbigen Wörter (ab drei Silben) in Relation zur Anzahl der Sätze im Text \cite[S. 442]{pedrini_medical_2024}.
+	
+	Wie bei der Wiener Sachtextformel gibt der gSMOG-Wert die benötigte Schulstufe an, die zum Verständnis des Textes erforderlich ist \cite[S. 442]{pedrini_medical_2024}.\\
+	\hline
+\end{longtable}
+\clearpage
 
 \subsection{Linguistische Metriken}
 Über klassische Lesbarkeitsformeln hinaus werden in der Forschungen linguistische Metriken eingesetzt, die detailliertere Aussagen über sprachliche Komplexität erlauben.
