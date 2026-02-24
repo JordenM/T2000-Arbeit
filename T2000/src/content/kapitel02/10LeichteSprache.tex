@@ -8,10 +8,10 @@ Gleichzeitig zeigen praktische Anwendungen, dass eine rein regelbasierte Umsetzu
 
 Um diesen Problemen zu begegnen wird in dieser Arbeit häufig von Leichter Sprache Plus (LS+) die Rede sein.
 Dabei handelt es sich um eine hybride Form, die sich zwischen den strengen Auflagen Leichter Sprache und der weniger stark reduzierten Einfachen Sprache bewegt.
-Dieser Ansatz erlaubt eine begrenzte Flexibilisierung und Lockerung der Regeln, um Inhalte natürlicher, flüssiger und informationsreicher darstellen zu können.
+Dieser Ansatz erlaubt eine begrenzte Flexibilisierung und Lockerung der Regeln, um Inhalte natürlicher, flüssiger und informationsreicher darstellen zu können (Kapitel \ref{uch:unterschiede}).
 
 Aus technischer Perspektive ist Leichte Sprache Plus deshalb praktikabel, da einige strikte Regeln, wie etwa die extreme Satzverkürzung, das vollständige Verbot bestimmter grammatikalischer Strukturen und die Bedingung, dass ein Text immer von einer Person aus der Zielgruppe überprüft werden muss, mittels aktueller technischer Möglichkeiten, wie durch automatisierte Vereinfachungsmodelle oder Machine-Learning-Ansätze, nur schwer umsetzbar sind, ohne die Bedeutung des Textes zu verfälschen.
-Durch den Einsatz adaptiver, kontextabhängiger Bewertungsverfahren wie LENS kann bei LS+ eine bessere Balance zwischen Lesbarkeit, Natürlichkeit und inhaltlicher Korrektheit erreicht werden, die den Anforderungen der Zielgruppen besser gerecht wird
+Durch den Einsatz adaptiver, kontextabhängiger Bewertungsverfahren wie LENS (Learnable Evaluation Metric for Text Simplification \cite{maddela_lens_2023}) kann bei LS+ eine bessere Balance zwischen Lesbarkeit, Natürlichkeit und inhaltlicher Korrektheit erreicht werden, die den Anforderungen der Zielgruppen besser gerecht wird.
 
 \subsection{Historischer Hintergrund}
 Das Konzept der Leichten Sprache ist keine deutsche Erfindung.
@@ -62,7 +62,7 @@ Moderne Metriken wie SARI oder LENS versuchen bereits, dieses Mittelmaß zwische
 Diese Erkenntnis ist maßgeblich für die Konzeption iterativer Verbesserungsschleifen, da hierbei die Inhaltliche Korrektheit bei jeder Iteration mitbetrachtet werden muss.
 Die Schwierigkeit liegt darin ein Mittelmaß zwischen Vollständigkeit und Lesbarkeit zu schaffen, welches eingehalten werden kann und den Anforderungen der Zielgruppen gerecht wird.
 
-\subsection{Unterschiede: Leichte-, Einfache- und Standard-Sprache}
+\subsection{Unterschiede: Leichte-, Einfache- und Standard-Sprache} \label{uch:unterschiede}
 \begin{longtable}{|p{0.22\textwidth}|p{0.22\textwidth}|p{0.22\textwidth}|p{0.22\textwidth}|}
 	\caption{Unterschiede Leichte-, Einfache-, Standard-Sprache} \label{tab:sprachen} \\
 	\hline
