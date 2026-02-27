@@ -12,14 +12,14 @@ Durch den Einsatz von Multi-Head-Attention kann das Modell zudem gleichzeitig ve
 Da Transformer keine Informationen über die Reihenfolge von Token besitzen, werden diese durch Positional Encoding (Positionskodierung) explizit in die Eingabe-Embeddings injiziert \cite[S. 4-6]{vaswani_attention_nodate}.
 
 Der Entwicklungsprozess dieser Modelle folgt hauptsächlich dem Ablauf von Pre-training und Fine-tuning.
-Im Rahmen des Pre-trainings lernen die LLMs durch selbst überwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von zum Beispiel Wikipedia-Dateien vorhersagen.
-Bevor die Verarbeitung erfolgt, wird der Text mittels Tokenisierung in kleine Einheiten unterteilt, um auch Wörter außerhalb des festen Vokabulars zu haben.
-Nach dem allgemeinen Vortraining kann das Modell durch Fine-tuning mit kleineren, aufgabenspezifischen Datensätzen für konkrete Anwendungen wie Übersetzung oder auch Leichte Sprache spezialisiert werden.
+Im Rahmen des Pre-trainings lernen die LLMs durch selbst überwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von zum Beispiel Wikipedia-Dateien vorhersagen \cite[S. 1-20]{xiao_foundations_2025}.
+Bevor die Verarbeitung erfolgt, wird der Text mittels Tokenisierung in kleine Einheiten unterteilt, um auch Wörter außerhalb des festen Vokabulars zu haben \cite[S. 228-229]{bluthgen_technische_2025}.
+Nach dem allgemeinen Vortraining kann das Modell durch Fine-tuning mit kleineren, aufgabenspezifischen Datensätzen für konkrete Anwendungen wie Übersetzung oder auch Leichte Sprache spezialisiert werden \cite[S.42-46]{xiao_foundations_2025}.
 
-Ein wesentliches Merkmal von LLMs ist die Emergenz, womit Fähigkeiten gemeint sind, die erst durch eine massive Erhöhung der Modellgröße, Datenmenge und Rechenleistung entstehen.
+Ein wesentliches Merkmal von LLMs ist die Emergenz, womit Fähigkeiten gemeint sind, die erst durch eine massive Erhöhung der Modellgröße, Datenmenge und Rechenleistung entstehen \cite[S.1]{bommasani_opportunities_2022}.
 Ein Beispiel für Emergenz ist das In-Context-Learning.
 Hierbei kann das Modell neue Aufgaben allein durch die Bereitstellung von Anweisungen oder Beispielen innerhalb des Eingabetextes(Prompts) lösen, ohne dass das Modell auf die Aufgabe spezifisch angepasst werden muss.
-In der Forschung wird hierbei zwischen Zero-shot(Prompts ohne Beispiele), One-shot(ein Beispiel) und Few-shot(einige wenige Beispiele) unterschieden.
+In der Forschung wird hierbei zwischen Zero-shot(Prompts ohne Beispiele), One-shot(ein Beispiel) und Few-shot(einige wenige Beispiele) unterschieden \cite[S. 3-6]{brown_language_2020}.
 Die Leistung dieser Modelle folgt dabei oft einem Potenzgesetz in Abhängigkeit von Rechenaufwand und Modellkapazität.
 
 Trotz der beeindruckenden Fähigkeiten von LLMs, haben sie auch einige Probleme.
