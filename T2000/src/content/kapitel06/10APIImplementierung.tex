@@ -1,2 +1,11 @@
 % !TeX spellcheck = de_DE
 
+Die Umsetzung des PoC orientiert sich an der in Kapitel \ref{ch:konzeption} vorgestellten Konzeption und besteht aus zwei zentralen Komponenten.
+Die erste Komponente bekommt die berechneten Metriken des Textes von einem weiteren Service. 
+Anhand von gesetzten Anforderungen an die Metriken, führt die Komponente die Bewertung der Qualitätsanforderungen durch.
+Zur Berechnung der Qualitätsmetriken wird ein bestehender Metrics Service verwendet.
+Dieser stellt verschiedene Kennzahlen zur Bewertung von LS+-Texten bereit und bildet die Grundlage der Analyse (Siehe Kapitel \ref{ch:metrikenanalyse}).
+
+Die zweite Komponente steuert den eigentlichen Verbesserungsprozess, dabei wird die Bewertung der ersten Komponente abgerufen und je nach Ergebnis eine weitere Iteration initialisiert oder abgebrochen.
+Wenn die Qualitätsanforderungen nicht erfüllt sind, wird ein Feedback erzeugt und für die nächste Textgenerierung verwendet.
+Der resultierende Text wird anschließend erneut bewertet, wodurch ein geschlossener Feedbackkreislauf entsteht.

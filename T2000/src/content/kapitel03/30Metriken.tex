@@ -1,2 +1,91 @@
 % !TeX spellcheck = de_DE
 
+Für die Konzeption und Implementierung des automatisierten Evaluationsmoduls ist eine Analyse der bereits in der LS-Pipeline enthaltenen Metriken zwingend notwendig. Im Folgenden wird die Arbeit eine Übersicht über die implementierten Metriken geben, deren Nutzen und mögliche Erweiterungen, die im weiteren Verlauf der Arbeit berücksichtigt werden. Die folgenden Metriken sind in mehrere Gruppen aufgeteilt: messbare Lesbarkeitsindizes, linguistische Oberflächenmetriken, komplexe strukturelle Metriken sowie Evaluationsverfahren.
+
+\subsection{Evaluierung klassischer Lesbarkeitsindizes}
+Klassische Lesbarkeitsformeln stellen Näherungsverfahren dar, welche mittels vorrangig Wort- und Satzlängen die Komplexität eines Textes approximieren.
+Für technische Systeme ist besonders die konkrete Berechnung von Vorteil. 
+Im Rahmen der Analysephase wird untersucht, inwieweit diese historisch gewachsenen Kennzahlen als Metriken für den Proof of Concept (PoC) herangezogen werden können. 
+
+Tabelle 3.1 bietet eine kritische Gegenüberstellung dieser Indizes, bezogen auf ihren konkreten Nutzen und ihre methodischen Grenzen bei der automatisierten Bewertung von Texten in Leichter Sprache.
+
+\begin{longtable}{|p{0.28\textwidth}|p{0.67\textwidth}|}
+	\hline
+	\textbf{Lesbarkeitsmetrik} & \textbf{Kritische Eignung und Grenzen für Leichte Sprache}\\
+	\hline
+	\endfirsthead
+	
+	\hline
+	\textbf{Lesbarkeitsmetrik} & \textbf{Kritische Eignung und Grenzen für Leichte Sprache}\\
+	\hline
+	\endhead
+	
+	Flesch-Reading-Ease (FRE) & 
+	\textbf{Nutzen:} Liefert eine schnelle, kontinuierliche Makro-Metrik (0--100) zur groben Einordnung des Textes. \\
+	& \textbf{Kritik:} Die Gewichtung ist nicht optimal für extrem kurze Sätze; zudem werden syntaktische Barrieren der Leichten Sprache (wie das Passivverbotskriterium) mathematisch vollkommen ignoriert.\\
+	\hline
+	
+	LIX-Lesbarkeitsindex & 
+	\textbf{Nutzen:} Durch den Verzicht auf Silbenzählung algorithmisch fehlerfrei und hochgradig performant umsetzbar. \\
+	& \textbf{Kritik:} Misst Wortlänge starr ab sechs Buchstaben. Typische Trennungen der Leichten Sprache (z.\,B. durch Bindestriche oder Mediopunkte) verfälschen den LIX-Wert, obwohl der Text dadurch für Menschen einfacher wird.\\
+	\hline
+	
+	Wiener Sachtextformel (WSTF 1 bis 4) & 
+	\textbf{Nutzen:} Liefert durch das Ergebnis als Schulstufe (4--15) einen für Entwickler hochgradig intuitiven Schwellenwert. Die Varianten 1 bis 3 eignen sich gut für eine feingranulare algorithmische Gewichtung. \\
+	& \textbf{Kritik:} Entwickelt für deutsche Sachtexte, schlägt bei der extrem reduzierten Strukturierung von Leichter Sprache (Zielbereich liegt oft rechnerisch unter Stufe 4) in den Randbereichen fehl. Übertragbarkeit auf Leichte Sprache muss geprüft werden.\\
+	\hline
+	
+	gSMOG-Index & 
+	\textbf{Nutzen:} Fokussiert stark die Wortkomplexität (Mehrsilbigkeit) und harmoniert daher gut mit den Anforderungen zur Vermeidung von Fach- und Fremdwörtern. \\
+	& \textbf{Kritik:} Reagiert sehr sensitiv auf einzelne mehrsilbige Ausreißer in kurzen Texten.\\
+	\hline
+	
+	\textbf{Ergänzende Ansätze:} & \\
+	New Dale-Chall Formula & Bietet durch den Abgleich mit einem statischen Wortschatz (3.000 Wörter) einen datengetriebenen Ansatz zur Erkennung von Fachsprache, vernachlässigt dabei jedoch die Satzstruktur völlig.\\
+	Automated Readability Index (ARI) / Coleman-Liau & Liefern rein zeichen- und wortbasierte Werte. Sie sind nützlich für eine performante Vor-Filterung im System, besitzen jedoch für die linguistische Detailsteuerung keine ausreichende semantische Tiefe.\\
+	\hline
+	\caption{Kritische Analyse klassischer Lesbarkeitsmetriken}
+\end{longtable}
+
+Zusammenfassend zeigt sich, dass ein Zusammenspiel aus mehreren Metriken notwendig ist um einen passenden Überblick über die Komplexität eines Textes zu erlangen. Die Grenzen dieser Metriken liegen klar bei der Ignoranz gegenüber der Grammatik sowie der inhaltlichen Korrektheit, weshalb sie alleinstehend keine ausreichende Analysebasis bieten.
+
+\subsection{Linguistische Oberflächenmetriken}
+Zudem sind atomare linguistische Metriken implementiert, diese sind zum teil da um die Lesbarkeitsmetriken zu berechnen, jedoch können diese auch einzeln als Grenzwerte und Filter dienen.
+Folgende atomare Metriken sind bereits implementiert:
+
+\begin{itemize}
+	\item \textbf{Anzahl der Sätze, Wörter und Silben:} Diese Parameter bilden die mathematische Basisgröße für das gesamte Textvolumen.
+	\item \textbf{Anzahl unterschiedlicher Wörter (Type-Token-Ratio):} Diese Metrik misst den Wortschatzreichtum eines Textes. Für die Leichte Sprache gilt: Je niedriger die Anzahl unterschiedlicher Wörter im Verhältnis zur Gesamtwortanzahl ist, desto verständlicher ist der Text, da er auf Repetitionen statt auf Variation beruht.
+	\item \textbf{Durchschnittliche Satzlänge (in Wörtern / Silben / Buchstaben):} Die Satzlänge in Wörtern ist ein direkter Indikator für die kognitive Belastung Gedächtnis. Die Messung in Silben fängt zudem die rhythmische Länge ein, während die Satzlänge in Buchstaben hochgradig sensitiv gegenüber der Verwendung überlanger Einzelwörter ist.
+	\item \textbf{Durchschnittliche Wortlänge (in Buchstaben / Silben):} Die Wortlänge in Buchstaben bestimmt maßgeblich die optische Dichte eines Textes. Eine geringere Dichte vereinfacht die visuelle Wahrnehmbarkeit. Die Wortlänge in Silben wiederum fungiert als verlässlicher Indikator für abstrakte Komplexität, wie sie typischerweise in Behörden-, Fach- oder Wissenschaftssprachen vorkommt.
+	\item \textbf{Anteil langer Wörter ($\ge 6$ Buchstaben) in \%:} Lange Wörter erschweren den Leseprozess. Die Erfassung der absoluten Anzahl sowie des prozentualen Anteils liefert präzise Schwellenwerte die leicht implementiert werden können.
+	\item \textbf{Anteil mehrsilbiger Wörter ($\ge 3$ Silben) in \%:} Da mehrsilbige Begriffe im Deutschen oft mit Fachtermini oder komplexen Wörtern einhergehen, bildet dieser Prozentanteil den Kernfaktor für die Validierung des gSMOG- und WSTF-Zielniveaus.
+	\item \textbf{Anzahl und Anteil von Sätzen $> 10$ Wörtern:} Diese Metrik gibt einen schnellen Überblick über die Struktur der Sätze. Da die Leichte Sprache kurze Sätze fordert, weist ein hoher Prozentanteil von Sätzen über diesem Grenzwert das Vorhandensein komplexer Satzstrukturen auf.
+\end{itemize}
+
+\subsection{Fortgeschrittene strukturelle Metriken}
+Die bisher genannten Metriken können einen guten generellen Überblick über die Komplexität eines Textes geben, vor allem im Bezug auf die visuelle, kognitive Belastung. Sie scheitern jedoch an der Erkennung komplexer grammatikalischer Phänomene, an dieser Stelle kommen syntaktische Parser (z.B. SpaCy) zum Einsatz um eben solche Strukturen zu erkennen und Messbar zu machen. Damit können weitere sprachliche Bereiche abgedeckt werden, die nach den Regelwerken der Leichten Sprache reduziert oder gar weggelassen werden sollen.
+
+\begin{itemize}
+	\item \textbf{Anzahl Passivkonstruktionen:} Das Passiv verschleiert den Handelnden und bricht das für die Zielgruppe wichtige Aktivitätsprinzip. Die Metrik erkennt diese Formen, um eine Umwandlung in aktive Sätze einzufordern.
+	\item \textbf{Anzahl Genitiv-Konstruktionen:} Der Genitiv gilt in der Verständlichkeitsforschung als kognitiv schwer zu verarbeiten und sollte systematisch durch Konstruktionen mit der Präposition \textit{„von“} oder durch eine Abänderung des Satzes ersetzt werden.
+	\item \textbf{Anzahl Konjunktive:} Der Konjunktiv erzeugt hypothetische Welten und grammatikalische Distanz, was die Eindeutigkeit der Information verschleiert.
+	\item \textbf{Anzahl Relativsätze:} Relativsätze unterbrechen den primären Lesefluss des Hauptsatzes und führen zu Schachtelsätzen, die Zielgruppen kognitiv überlasten können.
+	\item \textbf{Anzahl zusammengesetzter Wörter (Komposita):} Das Deutsche neigt zu komplexen Wortzusammensetzungen. Die quantitative Erfassung nicht getrennter Komposita ist ein Indikator für Verbesserungsmöglichkeiten durch Synonyme, Bindestriche oder Mediopunkte.
+	\item \textbf{Anteil an Negationen:} Insbesondere Mehrfach- oder Doppelnegationen drehen den Sinn von Aussagen um und stellen eine Hürde für das Textverständnis dar.
+	\item \textbf{Referenzdichte:} Misst das Verhältnis von Pronomen (er, sie, es) zu den tatsächlichen Substantiven. Eine niedrige Referenzdichte, sprich die bewusste Wiederholung des Nomens anstelle eines Pronomen, steigert die Eindeutigkeit für die Zielgruppe.
+	\item \textbf{Konnektorendichte:} Analysiert das Vorkommen von logischen Bindegliedern (z.B. \textit{weil, aber, deshalb}). Während die klassische Leichte Sprache Konnektoren/Bindewörter oft verbietet, können sie im Rahmen von Leichter Sprache Plus (LS+) verwendet werden um komplexere Strukturen darzustellen und Sätze einzusparen.
+\end{itemize}
+
+\subsection{Semantische und informationelle Metriken}
+Die sprachliche Vereinfachung im Rahmen der Leichten Sprache birgt technisch stets das Risiko des Informationsverlustes, der unzulässigen Sinnverschiebung oder, im Kontext generativer LLM-Systeme, der Halluzination. 
+Die Qualitätssicherung darf also nicht ausschließlich über die oben genannten Metriken geschehen, welche primär die Einfachheit der Texte prüfen.
+Eine Kopplung mit Metriken, welche die inhaltliche Konsistenz sicherstellen schließt diese Lücke.
+
+Hierzu wird die Implementierung des \textbf{BERTScore} analysiert.Der BERTScore vergleicht die contextualized Token-Embeddings des Ursprungstextes mit denen des generierten Zieltextes in einem hochdimensionalen Vektorraum. Er erfasst somit die semantische Ähnlichkeit unabhängig von den konkret gewählten Wortformen.
+Zusammengefasst vergleicht er die inhaltliche Ähnlichkeit zwischen dem Ursprungstext und der Übersetzung um sicherzustellen, dass die Übersetzung nicht zu gravierend Abweicht.
+
+Für den Einsatz im Bereich der Leichten Sprache Plus ist es sinnvoll einen Zielbereich zu definieren, in welchem dieser Score sein sollte, damit ist es eine Metrik die wie die oben genannten Messbar ist und als Feedback genutzt werden kann. Ein perfekter Wert von 1.0 ist aufgrund der strukturellen Transformationen unmöglich und nicht Zielführend: Die erzwungenen Abwandlungen der Leichten Sprache (Satzaufspaltungen, das Hinzufügen von Erklärungen und der Verzicht auf komplexe Grammatik) verschieben die Vektoren im Einbettungsraum zwangsläufig. Ein zu niedriger Wert indiziert hingegen den Verlust essentieller Kernfakten oder das Auftreten von Fehlinformationen.
+
+\subsubsection{Fazit}
+Keine der hier genannten Metriken haben eine alleinige, vollständige Gültigkeit, im Verlauf der Arbeit wird analysiert, welche Metriken in welchem Zusammenspiel sinnvoll und Zielführend sind.

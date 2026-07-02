@@ -1,0 +1,109 @@
+% !TeX spellcheck = de_DE
+
+Für die Evaluation wurde aus den in Kapitel \ref{ch:metrikenanalyse} beschriebenen Metriken eine Kollektion an Kennzahlen ausgewählt, die sowohl Lesbarkeit als auch grammatische Strukturen und inhaltliche Konsistenz abdecken.
+Ziel ist es, die Kennzahlen zu verwenden, die einerseits technisch konsistent berechenbar sind und andererseits möglichst direkt auf die Anforderungen von LS+ bezogen werden können. Andere im System vorhandene Metriken werden bewusst nicht in den Fokus der Auswertung genommen, da ihr Beitrag zur Bewertung der LS+-Qualität entweder gering oder schwer interpretierbar ist.
+
+Zudem wurde die Anzahl der betrachteten Metriken bewusst begrenzt.
+Da es sich bei der vorliegenden Arbeit um die Untersuchung eines PoC handelt, liegt der Fokus nicht darauf die aussagekräftigsten und besten Metriken zu implementieren.
+Vielmehr soll untersucht werden, ob ein metrikbasierter Ansatz im generellen funktioniert und geeignet ist, die Qualität von LS+-Texten zu verbessern.
+Eine überschaubare Auswahl von Metriken ermöglicht dabei eine nachvollziehbare Analyse der Ergebnisse und erleichtert die Bewertung des Ansatzes.
+
+Zudem wird davon ausgegangen, dass es keine universell optimale Sammlung an Metriken gibt, da die Eignung von dem jeweiligen Anwendungsfall, der Zielgruppe sowie dem konkreten Kontext ab.
+Die ausgewählten Metriken stellen daher keine allgemeingültige Lösung dar, sondern dienen als Grundlage zur Untersuchung des zu untersuchenden Ansatzes.
+
+\subsection{Lesbarkeitsmetriken}
+Für die formale Lesbarkeit werden drei klassische Indizes verwendet:
+\begin{itemize}
+	\item \textbf{Flesch-Reading-Ease (FRE):}\\
+	FRE ist eine etablierte Lesbarkeitsmetrik, die auf durchschnittlicher Satzlänge und Silbenanzahl pro Wort baisert und einen gut interpretierbaren Wert zwischen 0 und 100 liefert.
+	Sie ermöglicht eine schnelle, kontinuierlicher Einordnung der Textkomplexität und ist im deutschsprachigen Kontext durch die Amstad-Anpassung gut untersucht.
+	Der FRE wurde gewählt, weil:
+	\begin{itemize}
+		\item er als Indikator eine globale Einschätzung der Textschwierigkeit bietet,
+		\item er sensibel auf Veränderungen von Satzlänge und Wortkomplexität reagiert und damit Verbesserungen durch den Feedbackloop sichtbar macht,
+		\item er in der Literatur zur Verständlichkeitsforschung häufig verwendet wird, wodurch sich die Ergebnisse gut einordnen lassen.
+	\end{itemize}
+	Andere Metriken mit ähnlicher Zielsetzung wie ARI oder Coleman-Liau wurden nicht ausgewählt, da sie stärker auf Zeichen- statt Silbenebene operieren und weniger etabliert für deutschsprachige Lesbarkeit sind.
+	\item \textbf{LIX-Index:}\\
+	LIX basiert auf Satzlänge und dem Anteil langer Wörter ($\geq$ 6 Buchstaben).
+	Er ist robust, einfach zu berechnen und weitgehend unabhängig von Fehlern in der Silbenzählung.
+	LIX wurde ausgewählt, weil:
+	\begin{itemize}
+		\item er die visuelle und lexikalische Dichte des Textes erfasst, was für Lesergruppen mit eingeschränkter Lesekompetenz von zentralem Nutzen ist,
+		\item er eine gute Ergänzung zum FRE ist, da er explizit auf langen Wörtern basiert im Vergleich zu Silben beim FRE.
+	\end{itemize}
+	\item \textbf{gSMOG-Index:}\\
+	gSMOG hat seinen Schwerpunkt auf der Anzahl mehrsilbiger Wörter und gibt eine geschätzte Schulstufe an, die für das Textverständnis erforderlich ist.
+	gSMOG wird eingesetzt, weil:
+	\begin{itemize}
+		\item er die Wortschwierigkeit stärker gewichtet als FRE und LIX und damit gut geeignet ist, problematische Fach- und abstrakte Begriffe zu identifizieren,
+		\item er für kurze LS+-Texte eine sinnvolle Ergänzung darstellt, da dort schon einzelne komplexe Wörter stark ins Gewicht fallen.
+	\end{itemize}
+	Die Wiener Sachtextformel (WSTF) wird im Rahmen der Evaluation nur ergänzend betrachtet, da sie ursprünglich für klassische Sachtexte konzipiert wurde und bei stark reduzierten LS+-Texten häufig an ihre Randbereiche kommt.
+	Sie eignet sich weniger als Zielmetrik, kann aber als Kontrolle verwendet werden.
+\end{itemize}
+Durch die Verbindung von FRE, LIX und gSMOG wird die formale Lesbarkeit aus drei unterschiedlichen und komplementären Perspektiven betrachtet.
+Dadurch lassen sich Veränderungen über die Iterationen zuverlässiger nachweisen, als es mit einer einzelnen Formel möglich wäre.
+
+\subsection{Linguistische Oberflächen- und Strukturmetriken}
+Neben den Lesbarkeitsindizes werden ausgewählte linguistische Metriken verwendet, die direkt an zentrale Regeln der Leichten Sprache bzw. LS+ anknüpfen:
+\begin{itemize}
+	\item \textbf{Durchschnittliche Satzlänge in Wörtern:}\\
+	Die durchschnittliche Satzlänge ist ein unmittelbarer Indikator für die kognitive Belastung beim Lesen. Sie wird eingesetzt, weil:
+	\begin{itemize}
+		\item sie feinfühlig auf Veränderungen des Feedbackloops reagiert (z.B. Satzspaltungen),
+		\item sie leicht interpretierbar ist und sich als konkrete Zielgröße eignet, da sie auch bei längeren Texten nicht die Bedeutung verliert.
+	\end{itemize}
+	\item \textbf{Anteil langer Wörter ($\geq$ 6 Buchstaben) und Anteil mehrsilbiger Wörter ($\geq$ 3 Silben):}\\
+	Diese Metriken achten auf den in den Regelwerken geforderten Verzicht auf komplexe, lange und mehrsilbige Wörter. Sie werden verwendet, weil:
+	\begin{itemize}
+		\item sie mit den Anforderungen der Regelwerken übereinstimmen und sie diese messbar und umsetzbar machen,
+		\item sie eine direkte Verbindung zwischen Regelverstoß und Feedback an das LLM erlauben,
+		\item sie eine gut steuerbare und anpassbare Zielgröße für den Loop sind.
+	\end{itemize}
+	
+	\item \textbf{Anzahl und Anteil von Passivkonstruktionen:}\\
+	Das Verbot bzw. die starke Einschränkung von Passivkonstruktionen gehört zu den zentralen Regeln der Leichten Sprache.
+	Der Passivanteil wird deshalb als eigene Metrik berücksichtigt, weil:
+	\begin{itemize}
+		\item Passivformen für viele Zielgruppen schwerer zu verstehen sind,
+		\item die Umwandlung in aktive Sätze eine typischerweise sinnvolle und klar formulierbare Verbesserung ist,
+		\item der Passivanteil eine konkrete Kennzahl ist, die sich gut als Feedback und Grenze nutzen Lässt.
+	\end{itemize}
+	\item \textbf{Anzahl und Anteil von Relativsätzen:}\\
+	Relativsätze tragen zur Verschachtelung von Sätzen bei und sind für viele Lesergruppen von LS+ eine Hürde.
+	Sie werden in die Evaluation aufgenommen, weil:
+	\begin{itemize}
+		\item sie die syntaktische Komplexität jenseits reiner Satzlängenstatistiken erfassen,
+		\item ihre Reduktion ein typisches Ziel bei der Vereinfachung von Texten in Leichte Sprache ist,
+		\item sie Konkrete Kennzahlen bieten, die sich als Feedback und Grenzen nutzen lassen.
+	\end{itemize}
+\end{itemize}
+Andere mögliche Strukturelle Metriken wie Konnektorendichte oder Referenzdichte (Pronomen vs. Nomen) werden nicht mit einbezogen, da ihre Interpretation im Kontext Leichter Sprache mehrdeutig ist.
+Konnektoren können je nach Einsatz positiven als auch negativen Einfluss haben.
+Für die vorliegende Arbeit stehen zunächst eindeutige regelbezogene Phänomene im Vordergrund.
+
+\subsection{Semantische Metrik}
+Um neben der formalen Vereinfachung auch den Erhalt des Informationsgehalts zu berücksichtigen, wird eine Metrik verwendet, welche die semantische Ähnlichkeit ermittelt:
+\begin{itemize}
+	\item \textbf{BERTScore:}\\
+	BERTScore vergleicht die kontextuell eingebetteten Tokenrepräsentationen des Ausgangstextes mit denen der LS+-Version und liefert einen Wert für die semantische Nähe im Vektorraum.
+	BERTScore wurde ausgewählt, da:
+	\begin{itemize}
+		\item er die Bedeutungsähnlichkeit unabhängig von exakter Wortwahl und Satzstruktur erfasst und sich somit besonders für umgestellte LS+-Texte eignet,
+		\item er es ermöglicht, den schmalen Grad zwischen Vereinfachung und Informationsverlust zu beobachten,
+		\item er sich gut mit anderen Metriken verbinden lässt um zu Kontrollieren, dass es zu keiner inhaltlichen Verschiebung der Inhalte kommt.
+	\end{itemize}
+\end{itemize}
+Andere semantische Metriken wurden nicht ausgewählt, da sie häufig stärker auf Übereinstimmungen zwischen zweier Texten basieren und damit die stilistische Umstellung von Leichter Sprache Plus zu sehr bestrafen würden, selbst wenn der Inhalt gleich bleibt.
+BERTScore ist hier robuster, da er auf kontextualisierten Embeddings aufbaut.
+
+\subsection{Zusammenfassung der Auswahl}
+Die ausgewählten Metriken decken drei zentrale Bereiche ab:
+\begin{itemize}
+	\item \textbf{Formale Lesbarkeit:} FRE, LIX, gSMOG, Satzlänge, Wortlänge
+	\item \textbf{Strukturelle Komplexität im Sinne der LS-Regeln:} Passivkonstruktionen, Relativsätze, lange/mehrsilbige Wörter
+	\item \textbf{Inhaltliche Konsistenz:} BERTScore
+\end{itemize}
+Metriken, die zwar verfügbar sind, aber entweder zu wenig Aussagekräftig sind oder einen zu hohen Interpretationsfreiraum geben, fließen bewusst nicht in die Auswertung mit ein.
+Dadurch bleibt der Evaluationsumfang überschaubar, gut interpretierbar und dennoch nah an den praktischen Anforderungen automatisierter Qualitätssicherung für Leichte Sprache Plus.

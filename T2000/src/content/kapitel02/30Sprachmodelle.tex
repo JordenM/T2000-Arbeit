@@ -12,7 +12,7 @@ Durch den Einsatz von Multi-Head-Attention kann das Modell zudem gleichzeitig ve
 Da Transformer keine Informationen über die Reihenfolge von Token besitzen, werden diese durch Positional Encoding (Positionskodierung) explizit in die Eingabe-Embeddings injiziert \cite[S. 4-6]{vaswani_attention_nodate}.
 
 Der Entwicklungsprozess dieser Modelle folgt hauptsächlich dem Ablauf von Pre-training und Fine-tuning.
-Im Rahmen des Pre-trainings lernen die LLMs durch selbst überwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von zum Beispiel Wikipedia-Dateien vorhersagen \cite[S. 1-20]{xiao_foundations_2025}.
+Im Rahmen des Pre-trainings lernen die LLMs durch selbst überwachtes Lernen, indem sie beispielsweise fehlende Wörter in Datensätzen von Wikipedia-Dateien vorhersagen \cite[S. 1-20]{xiao_foundations_2025}.
 Bevor die Verarbeitung erfolgt, wird der Text mittels Tokenisierung in kleine Einheiten unterteilt, um auch Wörter außerhalb des festen Vokabulars zu haben \cite[S. 228-229]{bluthgen_technische_2025}.
 Nach dem allgemeinen Vortraining kann das Modell durch Fine-tuning mit kleineren, aufgabenspezifischen Datensätzen für konkrete Anwendungen wie Übersetzung oder auch Leichte Sprache spezialisiert werden \cite[S.42-46]{xiao_foundations_2025}.
 
@@ -23,19 +23,19 @@ In der Forschung wird hierbei zwischen Zero-shot(Prompts ohne Beispiele), One-sh
 Die Leistung dieser Modelle folgt dabei oft einem Potenzgesetz in Abhängigkeit von Rechenaufwand und Modellkapazität.
 
 Trotz der beeindruckenden Fähigkeiten von LLMs, haben sie auch einige Probleme.
-Sie sind anfällig für Halluzinationen, wobei falsche Fakten oder unsinnige Antworten mit hoher Zuversicht von den Modellen generiert werden.
-Zudem können sie soziale Vorurteile widerspiegeln, die in den nicht überwachten Internet-Trainingsdaten enthalten sind.
-Ein weiteres Problem ist die Datenkontamination, dabei werden Testdaten von Benchmarks unbeabsichtigt Teil des Trainings und können so die Ergebnisse verfälschen.
-Um Halluzinationen zu reduzieren, werden LLMs zunehmend in Retrival-Argumented Generation(RAG)-Systeme integriert, dabei wird das generative Modell mit externen, verifizierbaren Wissensquellen verknüpft.
+Sie sind anfällig für Halluzinationen, wobei falsche Fakten oder unsinnige Antworten mit hoher Zuversicht von den Modellen generiert werden \cite[S. 1]{wu_clasheval_2025}.
+Zudem können sie soziale Vorurteile widerspiegeln, die in den nicht überwachten Internet-Trainingsdaten enthalten sind \cite[S. 36]{brown_language_2020}.
+Ein weiteres Problem ist die Datenkontamination, dabei werden Testdaten von Benchmarks unbeabsichtigt Teil des Trainings und können so die Ergebnisse verfälschen \cite[S. 6]{brown_language_2020}.
+Um Halluzinationen zu reduzieren, werden LLMs zunehmend in Retrival-Argumented Generation(RAG)-Systeme integriert, dabei wird das generative Modell mit externen, verifizierbaren Wissensquellen verknüpft \cite[S. 1]{wu_clasheval_2025}.
 
 \subsection{Funktionsweise von LLMs}
-Die Funktionsweise von LLMs beruht auf wahrscheinlichkeitsbasierten Vorhersagen des jeweils nächsten Tokens auf Basis des bisherigen Kontexts. Dabei werden Wahrscheinlichkeitsverteilungen über mögliche Fortsetzungen berechnet, aus denen sequenziell Text generiert wird. Dieses Verfahren führt zu formal kohärenten und grammatikalisch korrekten Ausgaben, impliziert jedoch kein semantisches Verständnis im menschlichen Sinne.
+Die Funktionsweise von LLMs beruht auf wahrscheinlichkeitsbasierten Vorhersagen des jeweils nächsten Tokens auf Basis des bisherigen Kontexts \cite[S. 6]{xiao_foundations_2025}. Dabei werden Wahrscheinlichkeitsverteilungen über mögliche Fortsetzungen berechnet, aus denen sequenziell Text generiert wird. Dieses Verfahren führt zu formal kohärenten und grammatikalisch korrekten Ausgaben, impliziert jedoch kein semantisches Verständnis im menschlichen Sinne \cite[S. 230]{bluthgen_technische_2025}.
 LLMs reproduzieren das was sie aus den Trainingsdaten gelernt haben und sind daher anfällig für die Übernahme komplexer Strukturen oder Annahmen, die der Zielsetzung verständlicher Texte entgegen wirken können.
 
 \subsection{Prompting-Grundlagen}
-Prompting bezeichnet die gezielte Steuerung von Sprachmodellen durch Eingabetexte, die Aufgabenstellung, Stil und gewünschte Eigenschaften der Ausgabe beschreiben.
-Für die Textvereinfachung und Leichte Sprache können Prompts genutzt werden, um Anforderungen wie kurze Sätze, einfache Wörter oder explizite Erklärungen vorzugeben. Studien zeigen jedoch, dass Prompting allein keine verlässliche Einhaltung formaler Verständlichkeitsregeln garantiert, da die Umsetzung stark von Modellarchitektur, Trainingsdaten und Kontext abhängt.
-Man kann die gewollte Struktur der Antworten zusätzlich mit One- oder Few-shot Prompts weiter verbessern, indem man dem LLM ein oder mehrere Beispiele einer Antwort im Prompt zu Verfügung stellt.
+Prompting bezeichnet die gezielte Steuerung von Sprachmodellen durch Eingabetexte, die Aufgabenstellung, Stil und gewünschte Eigenschaften der Ausgabe beschreiben \cite[S. 51-56]{xiao_foundations_2025}.
+Für die Textvereinfachung und Leichte Sprache können Prompts genutzt werden, um Anforderungen wie kurze Sätze, einfache Wörter oder explizite Erklärungen vorzugeben \cite[S. 102]{xiao_foundations_2025}. Studien zeigen jedoch, dass Prompting allein keine verlässliche Einhaltung formaler Verständlichkeitsregeln garantiert, da die Umsetzung stark von Modellarchitektur, Trainingsdaten und Kontext abhängt.
+Man kann die gewollte Struktur der Antworten zusätzlich mit One- oder Few-shot Prompts weiter verbessern, indem man dem LLM ein oder mehrere Beispiele einer Antwort im Prompt zu Verfügung stellt  \cite[S. 6-7]{brown_language_2020}.
 
 \subsection{Stärken und Schwächen im Kontext Leichte Sprache}
 Zu den Stärken von LLMs im Kontext Leichter Sprache zählen ihre Fähigkeit zur schnellen Textproduktion, zur Umformulierung bestehender Texte und zur Generierung inhaltlich verständlicher Vereinfachungen.

@@ -1,2 +1,9 @@
 % !TeX spellcheck = de_DE
 
+Wie oben bereits beschrieben, ist das Ziel dieser Arbeit die Untersuchung, ob die Qualität automatisch generierter Texte in Leichter Sprache Plus (LS+) durch einen metrisch gesteuerten Feedbackloop verbessert werden kann.
+Der entwickelte Proof of Concept erweitert die bestehende LS+-Pipeline um eine zusätzliche Qualitätssicherung.
+Die generierten Texte werden automatisiert bewertet und bei Bedarf über eine iterative Überarbeitung  strukturiert verbessert.
+
+Die Grundannahme des Ansatzes besteht darin, dass sich Qualitätsmängel in LS+-Texten zumindest teilweise über Metriken erkennen lassen.
+Werden Abweichungen von den definierten Qualitätsanforderungen festgestellt, können diese Informationen genutzt werden, um einem Large Language Model gezieltes Feedback für eine weitere Textgenerierung bereitzustellen.
+Durch die wiederholte Bewertung und Überarbeitung entsteht ein geschlossener Feedbackkreislau, dessen Ziel die iterative Verbesserung der Textqualität ist.

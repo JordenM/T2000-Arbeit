@@ -1,2 +1,15 @@
 % !TeX spellcheck = de_DE
 
+Der entwickelte Ansatz basiert auf einer zyklischen Abfolge aus Bewertung und Überarbeitung.
+Ausgangspunkt ist ein bereits erzeugter LS+-Text, dieser wird zunächst anhand von Metriken analysiert.
+Die ermittelten Werte werden anschließend mit zuvor festgelegten Anforderungen verglichen.
+
+Sind die Anforderungen erfüllt, gilt der Text als qualitativ ausreichend und der Prozess wird beendet.
+Gibt es jedoch eine Differenz zwischen den erreichten Metriken und den Soll-Metriken, werden die erkannten Schwachstellen in Form von Feedback aufbereitet und für eine erneute Generierung des Textes verwendet.
+Das Large Language Model erhält dabei gezielte Hinweise zu den Bereichen, die verbessert werden sollen.
+
+Im nächsten Schritt werden die Texte anschließend erneut bewertet.
+Dieser Vorgang wiederholt sich, bis entweder die definierten Qualitätsanforderungen erfüllt sind oder die maximale Anzahl an Iterationen erreicht wird.
+
+Durch diesen Ansatz soll die Textoptimierung nicht ausschließlich dem Sprachmodell überlassen werden.
+Stattdessen erfolgt die Überarbeitung auf Basis von berechenbaren Metriken, die die Verbesserungsschleife kontrolliert lenken.

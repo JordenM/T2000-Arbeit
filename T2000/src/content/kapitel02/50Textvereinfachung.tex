@@ -10,16 +10,16 @@ Dabei werden hauptsächlich vier Arten von Texttransformation durchgeführt:
 \end{itemize}
 
 Die Forschung unterscheidet hierbei zur Umsetzung zwischen verschiedenen Methodischen Ansätzen:
-\begin{table}
+\begin{table}[h!]
 	\centering
-	\begin{tabular}{|l|r|}
+	\begin{tabularx}{\textwidth}{|X|X|}
 		\hline
 		\textbf{Methodischer Ansatz:} & \textbf{Erklärung} \\
 		\hline
-		Statistische maschinelle Übersetzung (SMT) & Test \\
+		Statistische maschinelle Übersetzung (SMT) & Betrachtet Vereinfachung als Übersetzung von der „komplexen“ in die „einfache“ Quellsprache. Nutzt statistische Wahrscheinlichkeitsmodelle, die auf parallelen Korpora trainiert wurden \cite[S. 154]{alva-manchego_data-driven_2020}. \\
 		\hline
-		Phrasenbasierte Ansätze (PBSMT) & \\
+		Phrasenbasierte Ansätze (PBSMT) & Eine Weiterentwicklung von SMT, bei der nicht mehr einzelne Wörter, sondern ganze Wortfolgen (\textit{Phrasen}) als fundamentale Einheiten übersetzt und transformiert werden. Dies erlaubt eine bessere Beibehaltung des lokalen Kontextes \cite[S. 154]{alva-manchego_data-driven_2020}. \\
 		\hline
-	\end{tabular}
+	\end{tabularx}
 	\caption{Datengesteuerte Ansätze (Data-Driven Approaches)}
 \end{table}

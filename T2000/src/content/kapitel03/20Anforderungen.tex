@@ -1,2 +1,37 @@
 % !TeX spellcheck = de_DE
 
+In folgendem Kapitel werden die nötigen Anforderungen an das System beleuchtet.
+Dabei wird primär auf die funktionalen Anforderungen der Applikation eingegangen, welche die Interaktion zwischen dem System, den Nutzenden sowei externen Systemen beschreiben und das funktionale Soll-Verhalten definieren. Nicht-funktionale Anforderungen (wie Performance, Skalierbarkeit oder Ausfallsicherheit) werden im Rahmen dieser Arbeit nicht betrachtet. da es sich hierbei um einen Proof of Concept (PoC) handelt, steht die Validierung des methodischen Ansatzes im Umfeld der Leichten Sprache im Vordergrund. Die Erlangung einer Produktionsreifen Anwendung ist nicht Teil dieser Arbeit.
+
+Die hier genannten funktionalen Anforderungen spezifizieren, was das System tun soll.
+
+\begin{enumerate}
+	\item \textbf{Automatisierte Feedback-Extraktion}
+	\begin{itemize}
+		\item Bei dem Durchlaufen der Schleife muss ein strukturiertes Feedback generiert werden. Dieses dient als qualitative Grundlage, um in den nachfolgenden Iterationen gezielte Anpassungen zu erlangen.
+	\end{itemize}
+	\item \textbf{Kontextbewusstes Re-Prompting}
+	\begin{itemize}
+		\item Sollte die Validierung eines generierten Textes fehlschlagen, muss die Schleife mit einem angepassten Re-Prompt erneut aufgerufen werden, der gezielt auf die Mängel der vorherigen Iteration eingeht und auf dieser Basis die Verbesserungen möglich sind.
+	\end{itemize}
+	\item \textbf{Inhaltliche Konsistenz}
+	\begin{itemize}
+		\item Der Inhalt des Ausgangstextes muss bei allen generierten Texten gewahrt bleiben. Das System muss Halluzinationen minimieren, sodass keine Informationen verloren gehen, erfunden oder verfälscht werden.
+	\end{itemize}
+	\item \textbf{Abbruchkriterien}
+	\begin{itemize}
+		\item Um Endlosschleifen zu verhindern, müssen klare Abbruchkriterien definiert sein. Diese geben an, wann die Schleife beendet wird, entweder über eine maximale Anzahl von Iterationen oder über das Erreichen der Zielmetriken.
+	\end{itemize}
+	\item \textbf{Metriken basiert}
+	\begin{itemize}
+		\item Die zur Textbewertung eingesetzten Metriken müssen so gewählt sein, dass eine Verbesserung anhand der gemessenen Werte möglich ist, zudem müssen die Sollwerte der Metriken so gewählt sein, dass diese mathematisch und linguistisch erreichbar sind. 
+	\end{itemize}
+	\item \textbf{System-Logging und Entwickler-Review}
+	\begin{itemize}
+		\item Für die Analyse des PoC ist ein systeminternes Logging erforderlich. Der Verlauf der Textkomplexität soll nachvollziehbar dokumentiert und für Evaluierungszwecke nutzbar sein. Für den Nutzer ist diese Funktionalität jedoch explizit nicht vorgesehen.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Abgrenzung des Funktionsumfangs}
+
+Im Sinne der Fokussierung des PoC werden bestimmte Funktionen bewusst aus dem aktuellen Rahmen der Entwicklung ausgeschlossen. Ein manueller Eingruff durch den Nutzenden während der laufenden Optimierungsschleife ist zum aktuellen Zeitpunkt nicht vorgesehen. Ebenso wird die granulare Einstellung der Vereinfachungsstärke (z.B. die stufenlose Regulierung des Ziel-Sprachniveaus) als zukünftige Erweiterung eingestuft und gilt nicht als Aufgabe dieser Arbeit.

@@ -1,2 +1,22 @@
 % !TeX spellcheck = de_DE
 
+Der eigentliche Verbesserungsprozess basiert auf einem iterativen, kontextbezogenen Re-Prompting-Ansatz.
+Das verwendete Sprachmodell ändert sich im Laufe der Zeit, um die Konsistenz der Ergebnisse jedoch sicherstellen zu können, wird einheitlich für die Evaluation GPT-4 verwendet.
+
+Werden im vorherigen Schritt bei der Bewertungslogik Verstöße gegen die Anforderungen festgestellt wird das dort dokumentierte Feedback in diesem Schritt weiterverwendet.
+Das Feedback ist dabei beschreibend für die identifizierten Schwachstellen und dient als Kontext für die nächste Generierung.
+
+Auf der Grundlage dieses Feedbacks erzeugt das Sprachmodell eine überarbeitete Version des Textes.
+Anschließend wird die neue Version erneut bewertet.
+Durch die wiederholte Anwendung dieses Verfahrens entsteht ein iterativer Optimierungsprozess, der auf die schrittweise Verbesserung der Textmetriken abzielt.
+
+Die Überarbeitung orientiert sich nicht ausschließlich an den Fähigkeiten des Sprachmodells, sondern wird durch die Ergebnisse der automatisierten Qualitätsbewertung gesteuert.
+Die verwendeten Metriken übernehmen somit die Rolle eines Kontrollmechanismus und einem Wegweiser für das LLM innerhalb des Feedbackloops.
+
+Um eine unkontrollierte Anzahl von Iterationen zu vermeiden, wurden Abbruchkriterien definiert.
+\begin{itemize}
+	\item Der Verbesserungsprozess endet, sobald alle definierten Qualitätsanforderungen erfüllt sind.
+	In diesem Fall wird davon ausgegangen, dass die angestrebte Textqualität erreicht wurde.
+	\item Zusätzlich wird eine maximale Anzahl von Iterationen festgelegt.
+	Wird diese Grenze erreicht ohne, dass sämtliche Anforderungen erfüllt werden, wird der aktuell beste Textstand als Ergebnis übernommen, jedoch mit einer Anmerkung, dass es zu einem Abbruch kam.
+\end{itemize}

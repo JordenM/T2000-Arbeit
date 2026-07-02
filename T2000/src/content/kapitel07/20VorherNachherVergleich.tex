@@ -1,1 +1,29 @@
 % !TeX spellcheck = de_DE
+
+Die Datengrundlage der Analyse basiert auf realen Anwendungsfällen aus dem Nachrichtenbereich des Südwestrundfunks.
+Für jeden Anwendungsfall liegt ein Tripel von Texten vor: der ursprüngliche Text in Standardsprache, eine manuell übersetzte Version des Textes in LS+ sowie eine erzeugte Version in LS+, welche aus der bestehenden LS+-Pipeline entstanden ist.
+Die automatisch generierten LS+-Texte bilden den Ausgangspunkt für den in dieser Arbeit entwickelten Feedbackloop und werden im Folgenden als Ausgangstexte $T_0$ bezeichnet.
+
+Zentral für die Evaluierung ist die Beziehung zwischen dem durch die Pipeline generierten Text und der im Feedbackloop überarbeiteten Version.
+
+Die pipeline LS+ Version $T_0$ repräsentiert den jetzigen Stand der bestehenden Pipeline und den praktischen Einsatzpunkt der neu entwickelten Komponente.
+Die im Rahmen der Evaluation betrachteten Veränderungen der Metriken zwischen Ausgangstext $T_0$ und den Versionen die durch den Feedbackloop generiert wurden $T_1$, $T_2$, ..., $T_n$ sind ausschlaggebend für die Beurteilung, ob der betrachtete Ansatz einen Mehrwert für Texte in LS+ bieten kann.
+
+Beschreiben der Quellen; Was für Texte; Wie viele Texte; Redaktion Barrierefreiheit; Reale Artikel;
+Grundlage Beschreiben mit was arbeite ich;
+
+
+Die Datengrundlage der vorliegenden Untersuchung basiert auf redaktionellen Nachrichtentexten des Südwestrundfunks (SWR), die im Zeitraum von Oktober2025 bis Juni2026 entstanden sind. Für jeden Anwendungsfall liegt ein Tripel von Textvarianten vor: der ursprüngliche Nachrichtentext in Standardsprache, eine automatisch erzeugte Version in Leichter Sprache Plus (LS+) aus der bestehenden LS+-Pipeline sowie eine manuell erstellte LS+-Version. Damit umfasst der verfügbare Korpus insgesamt über \textbf{500 unterschiedliche Nachrichtenthemen}, zu denen jeweils drei Textvarianten vorliegen, sodass sich insgesamt mehr als \textbf{1,500 Einzeltexte} ergeben.
+
+Die Nachrichtenthemen decken einen breiten Ausschnitt des redaktionellen Spektrums ab. Vertreten sind unter anderem Beiträge aus den Bereichen Politik und Gesellschaft (z.,B.\ \enquote{Koalitionsausschuss Bürgergeld}, \enquote{Behinder-ten-gleich-stellungs-gesetz}, \enquote{Wahlprogramm Inklusion}), internationale Politik und Konflikte (z.,B.\ \enquote{Einigung Hamas und Israel}, \enquote{Ukraine}, \enquote{Irankrieg}), Wirtschaft und Arbeit (z.,B.\ \enquote{Chipmangel}, \enquote{Automobilindustrie}, \enquote{Mindestlohn}), Umwelt und Klima (z.,B.\ \enquote{Waldbrände}, \enquote{Weltklimakonferenz}, \enquote{Wasserentnahme}), Gesundheit und Medizin (z.,B.\ \enquote{E-Zigaretten}, \enquote{Darmkrebs}, \enquote{Krankenhaus LU}), Kultur und Freizeit (z.,B.\ \enquote{Comiccon}, \enquote{Schokofestival}, \enquote{Nibelungenfestspiele}) sowie Sport (z.,B.\ \enquote{HandballEM}, \enquote{Paralympics}, \enquote{Fußball-WM}). Darüber hinaus enthält der Korpus zahlreiche Beiträge mit direktem Bezug zu Barrierefreiheit und Inklusion, etwa \enquote{Lebenshilfe}, \enquote{Tag der Leichten Sprache}, \enquote{Inklusionsbetrieb} oder \enquote{Inklusionsbeauftragter}. Diese thematische Breite stellt sicher, dass der entwickelte Ansatz nicht nur an triviale oder künstliche Beispiele, sondern an realistische, redaktionell relevante Szenarien aus dem Nachrichtenalltag des SWR angewendet wird.
+
+Im Mittelpunkt der Evaluierung stehen die automatisch generierten LS+-Texte aus der bestehenden Pipeline. Sie werden im Folgenden als Ausgangstexte 
+T
+0
+T 
+0
+​
+bezeichnet und bilden den praktischen Einsatzpunkt des entwickelten Feedbackloops. Die manuellen LS+-Versionen werden ergänzend für die qualitative Einordnung der Ergebnisse herangezogen, um die vom System erzeugten Überarbeitungen mit redaktionell erstellten Zieltexten vergleichen zu können.
+
+Zur Veranschaulichung der Korpusstruktur dient Abbildung~\ref{fig:korpus-struktur}. Sie zeigt, dass für jeden Anwendungsfall mindestens der Originaltext in Standardsprache und eine automatische LS+-Version vorliegen, die in den Feedbackloop eingespeist wird, während für einen Teil der Fälle zusätzlich eine manuelle LS+-Version als Referenz verfügbar ist.
+
